@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'ro' | 'en';
@@ -9,29 +8,27 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
 const translations = {
   ro: {
     // Header
-    'nav.features': 'Funcții',
+    'nav.features': 'Funcționalități',
     'nav.vendors': 'Furnizori',
     'nav.pricing': 'Prețuri',
     'nav.blog': 'Blog',
     'nav.contact': 'Contact',
-    'nav.getStarted': 'Începe Acum',
+    'nav.getStarted': 'Începe acum',
     
     // Hero Section
-    'hero.title': 'Planifică-ți Ziua Perfectă cu',
-    'hero.titleAccent': 'Ușurință',
-    'hero.subtitle': 'Nunta360 ajută cuplurile românești să gestioneze fiecare detaliu al nunții lor—de la lista de invitați la rezervările furnizorilor. Fă ziua ta specială de neuitat cu instrumentele noastre intuitive de planificare.',
+    'hero.title': 'Planifică-ți',
+    'hero.titleAccent': 'Ziua Perfectă',
+    'hero.subtitle': 'Nunta360 îi ajută pe cuplurile românești să gestioneze fiecare detaliu al nunții lor—de la lista de invitați la rezervarea furnizorilor.',
     'hero.startPlanning': 'Începe Planificarea',
-    'hero.exploreFeatures': 'Explorează Funcțiile',
+    'hero.exploreFeatures': 'Explorează Funcționalitățile',
     
     // Features Section
-    'features.title': 'Tot Ce Ai Nevoie Pentru',
-    'features.titleAccent': 'Nunta Ta de Vis',
-    'features.subtitle': 'Instrumentele noastre complete de planificare te ajută să organizezi fiecare aspect al nunții cu ușurință și încredere.',
+    'features.title': 'Tot ce ai nevoie pentru',
+    'features.titleAccent': 'nunta perfectă',
+    'features.subtitle': 'Organizează fiecare detaliu cu ușurință folosind instrumentele noastre intuitive',
     'features.vendorDiscovery': 'Descoperirea Furnizorilor',
     'features.vendorDescription': 'Găsește și conectează-te cu furnizori de nuntă de încredere din zona ta. De la fotografi la catering, descoperă echipa perfectă pentru ziua ta specială.',
     'features.budgetPlanning': 'Planificarea Bugetului',
@@ -42,41 +39,41 @@ const translations = {
     'features.timelineDescription': 'Coordonează fiecare detaliu cu funcția noastră inteligentă de cronologie. Sincronizează cu calendarul tău și nu rata niciodată o dată importantă.',
     
     // Showcase Section
-    'showcase.title': 'Au Avut Încredere în Noi Sute de',
-    'showcase.titleAccent': 'Cupluri Românești',
+    'showcase.title': 'De încredere pentru',
+    'showcase.titleAccent': 'sute de cupluri românești',
     'showcase.subtitle': 'Alătură-te miilor de cupluri care și-au planificat nunta perfectă cu Nunta360',
-    'showcase.testimonial1': 'Nunta360 ne-a făcut planificarea nunții mult mai ușoară! Puteam urmări totul într-un singur loc.',
-    'showcase.testimonial2': 'Funcția de descoperire a furnizorilor ne-a ajutat să găsim profesioniști locali minunați. Recomand cu încredere!',
-    'showcase.testimonial3': 'Planificarea bugetului a fost o plăcere cu această aplicație. Am rămas în buget și am avut nunta de vis.',
+    'showcase.testimonial1': 'Nunta360 ne-a făcut planificarea nunții mult mai ușoară! Am putut urmări totul într-un singur loc.',
+    'showcase.testimonial2': 'Funcția de descoperire a furnizorilor ne-a ajutat să găsim profesioniști locali minunați. Foarte recomandat!',
+    'showcase.testimonial3': 'Planificarea bugetului a fost foarte ușoară cu această aplicație. Am rămas în limitele bugetului și am avut nunta de vis.',
     'showcase.stats.couples': 'Cupluri Fericite',
     'showcase.stats.vendors': 'Furnizori',
     'showcase.stats.cities': 'Orașe',
     'showcase.stats.satisfaction': 'Satisfacție',
     
     // Product Preview
-    'product.title': 'Planifică, Personalizează, Sărbătorește —',
-    'product.titleAccent': 'Totul într-o Singură Aplicație',
-    'product.subtitle': 'Descoperă cum Nunta360 simplifică fiecare aspect al călătoriei tale de planificare a nunții',
-    'product.guestList': 'Manager Lista Invitați',
+    'product.title': 'Planifică, Personalizează, Sărbătorește',
+    'product.titleAccent': 'Totul într-o singură aplicație',
+    'product.subtitle': 'Aruncă o privire asupra modului în care Nunta360 simplifică fiecare aspect al călătoriei tale de planificare a nunții',
+    'product.guestList': 'Manager Listă Invitați',
     'product.budgetTracker': 'Urmăritor Buget',
     'product.vendorDirectory': 'Director Furnizori',
-    'product.timelinePlanner': 'Planificator Cronologie',
+    'product.timelinePlanner': 'Planificator Timeline',
     'product.feature1.title': 'Gestionare Inteligentă a Invitaților',
     'product.feature1.description': 'Organizează lista de invitați, urmărește confirmările și gestionează cerințele dietetice într-o interfață intuitivă.',
     'product.feature2.title': 'Planificare Inteligentă a Bugetului',
-    'product.feature2.description': 'Stabilește bugete, urmărește cheltuielile și primește informații pentru a lua decizii informate despre cheltuielile nunții.',
+    'product.feature2.description': 'Stabilește bugete, urmărește cheltuielile și primește informații pentru a lua decizii în cunoștință de cauză.',
     'product.feature3.title': 'Rețea Curată de Furnizori',
-    'product.feature3.description': 'Accesează rețeaua noastră verificată de profesioniști români pentru nunți și citește recenzii autentice de la alte cupluri.',
+    'product.feature3.description': 'Accesează rețeaua noastră verificată de profesioniști în nunți din România și citește recenzii autentice.',
     
     // CTA Banner
-    'cta.title': 'Gata să Îți Începi Călătoria',
-    'cta.titleAccent': 'Împreună?',
-    'cta.subtitle': 'Alătură-te miilor de cupluri românești care au avut încredere în Nunta360 pentru a-și planifica ziua perfectă de nuntă. Începe contul tău gratuit astăzi și începe să planifici sărbătoarea unei vieți.',
-    'cta.createAccount': 'Creează Contul Tău Gratuit',
+    'cta.title': 'Gata să începi',
+    'cta.titleAccent': 'călătoria împreună?',
+    'cta.subtitle': 'Alătură-te miilor de cupluri care și-au planificat nunta perfectă cu Nunta360',
+    'cta.createAccount': 'Creează Contul Gratuit',
     'cta.trial': 'Nu necesită card de credit • Încercare gratuită de 14 zile • Anulare oricând',
     
     // Footer
-    'footer.tagline': 'Facem planificarea nunții frumoasă, simplă și fără stres pentru cuplurile românești.',
+    'footer.tagline': 'Platforma completă de planificare a nunții pentru cuplurile românești moderne.',
     'footer.product': 'Produs',
     'footer.support': 'Suport',
     'footer.legal': 'Legal',
@@ -84,7 +81,7 @@ const translations = {
     'footer.contactUs': 'Contactează-ne',
     'footer.weddingGuide': 'Ghid de Nuntă',
     'footer.privacyPolicy': 'Politica de Confidențialitate',
-    'footer.termsOfService': 'Termenii de Utilizare',
+    'footer.termsOfService': 'Termenii de Serviciu',
     'footer.cookiePolicy': 'Politica Cookie',
     'footer.copyright': '© 2024 Nunta360. Toate drepturile rezervate. Făcut cu ❤️ în România.'
   },
@@ -98,16 +95,16 @@ const translations = {
     'nav.getStarted': 'Get Started',
     
     // Hero Section
-    'hero.title': 'Plan Your Perfect Day with',
-    'hero.titleAccent': 'Ease',
-    'hero.subtitle': 'Nunta360 helps Romanian couples manage every detail of their wedding—from guest lists to vendor bookings. Make your special day unforgettable with our intuitive planning tools.',
+    'hero.title': 'Plan Your',
+    'hero.titleAccent': 'Perfect Day',
+    'hero.subtitle': 'Nunta360 helps Romanian couples manage every detail of their wedding—from guest lists to vendor bookings.',
     'hero.startPlanning': 'Start Planning',
     'hero.exploreFeatures': 'Explore Features',
     
     // Features Section
-    'features.title': 'Everything You Need for Your',
-    'features.titleAccent': 'Dream Wedding',
-    'features.subtitle': 'Our comprehensive planning tools help you organize every aspect of your wedding with ease and confidence.',
+    'features.title': 'Everything you need for your',
+    'features.titleAccent': 'perfect wedding',
+    'features.subtitle': 'Organize every detail with ease using our intuitive tools',
     'features.vendorDiscovery': 'Vendor Discovery',
     'features.vendorDescription': 'Find and connect with trusted Romanian wedding vendors in your area. From photographers to caterers, discover the perfect team for your special day.',
     'features.budgetPlanning': 'Budget Planning',
@@ -118,8 +115,8 @@ const translations = {
     'features.timelineDescription': 'Coordinate every detail with our smart timeline feature. Sync with your calendar and never miss an important deadline.',
     
     // Showcase Section
-    'showcase.title': 'Trusted by Hundreds of',
-    'showcase.titleAccent': 'Romanian Couples',
+    'showcase.title': 'Trusted by hundreds of',
+    'showcase.titleAccent': 'Romanian couples',
     'showcase.subtitle': 'Join thousands of couples who planned their perfect wedding with Nunta360',
     'showcase.testimonial1': 'Nunta360 made our wedding planning so much easier! We could track everything in one place.',
     'showcase.testimonial2': 'The vendor discovery feature helped us find amazing local professionals. Highly recommended!',
@@ -130,7 +127,7 @@ const translations = {
     'showcase.stats.satisfaction': 'Satisfaction',
     
     // Product Preview
-    'product.title': 'Plan, Customize, Celebrate —',
+    'product.title': 'Plan, Customize, Celebrate',
     'product.titleAccent': 'All in One App',
     'product.subtitle': 'Get a glimpse of how Nunta360 simplifies every aspect of your wedding planning journey',
     'product.guestList': 'Guest List Manager',
@@ -145,14 +142,14 @@ const translations = {
     'product.feature3.description': 'Access our vetted network of Romanian wedding professionals and read authentic reviews from other couples.',
     
     // CTA Banner
-    'cta.title': 'Ready to Start Your Journey',
-    'cta.titleAccent': 'Together?',
-    'cta.subtitle': 'Join thousands of Romanian couples who trusted Nunta360 to plan their perfect wedding day. Start your free account today and begin planning the celebration of a lifetime.',
+    'cta.title': 'Ready to start your',
+    'cta.titleAccent': 'journey together?',
+    'cta.subtitle': 'Join thousands of couples who planned their perfect wedding with Nunta360',
     'cta.createAccount': 'Create Your Free Account',
     'cta.trial': 'No credit card required • 14-day free trial • Cancel anytime',
     
     // Footer
-    'footer.tagline': 'Making wedding planning beautiful, simple, and stress-free for Romanian couples.',
+    'footer.tagline': 'The complete wedding planning platform for modern Romanian couples.',
     'footer.product': 'Product',
     'footer.support': 'Support',
     'footer.legal': 'Legal',
@@ -162,19 +159,24 @@ const translations = {
     'footer.privacyPolicy': 'Privacy Policy',
     'footer.termsOfService': 'Terms of Service',
     'footer.cookiePolicy': 'Cookie Policy',
-    'footer.copyright': '© 2024 Nunta360. All rights reserved. Made with ❤️ in Romania.'
+    'footer.copyright': '© 2024 Nunta360. All rights reserved.'
   }
 };
 
-interface LanguageProviderProps {
-  children: ReactNode;
-}
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('ro');
 
   const t = (key: string): string => {
-    return translations[language][key] || key;
+    const keys = key.split('.');
+    let value: any = translations[language];
+    
+    for (const k of keys) {
+      value = value?.[k];
+    }
+    
+    return value || key;
   };
 
   return (
@@ -184,9 +186,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   );
 };
 
-export const useLanguage = (): LanguageContextType => {
+export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

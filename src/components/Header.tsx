@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,9 +17,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-serif font-bold text-charcoal">
-              Nunta<span className="text-blush-400">360</span>
-            </h1>
+            <Link to="/">
+              <h1 className="text-2xl font-serif font-bold text-charcoal">
+                Nunta<span className="text-blush-400">360</span>
+              </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -42,9 +45,11 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
-            <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-              {t('nav.getStarted')}
-            </Button>
+            <Link to="/login">
+              <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+                {t('nav.getStarted')}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -79,9 +84,11 @@ const Header = () => {
               <a href="#contact" className="block text-charcoal hover:text-blush-400 font-medium py-2">
                 {t('nav.contact')}
               </a>
-              <Button className="w-full bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold mt-4">
-                {t('nav.getStarted')}
-              </Button>
+              <Link to="/login">
+                <Button className="w-full bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold mt-4">
+                  {t('nav.getStarted')}
+                </Button>
+              </Link>
             </nav>
           </div>
         )}

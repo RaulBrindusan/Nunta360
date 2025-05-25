@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -20,9 +20,11 @@ const HeroSection = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                {t('hero.startPlanning')}
-              </Button>
+              <Link to="/login">
+                <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+                  {t('hero.startPlanning')}
+                </Button>
+              </Link>
               <Button 
                 variant="outline" 
                 className="border-2 border-dustyRose-300 text-dustyRose-400 hover:bg-dustyRose-300 hover:text-white font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300"
