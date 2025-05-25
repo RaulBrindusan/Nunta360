@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="bg-gradient-to-br from-ivory via-blush-50 to-sage-50 py-20 lg:py-32">
       <div className="container mx-auto px-4 lg:px-8">
@@ -10,21 +13,21 @@ const HeroSection = () => {
           {/* Content */}
           <div className="animate-fade-in">
             <h1 className="text-4xl lg:text-6xl font-serif font-bold text-charcoal leading-tight mb-6">
-              Plan Your Perfect Day with{' '}
-              <span className="text-blush-400">Ease</span>
+              {t('hero.title')}{' '}
+              <span className="text-blush-400">{t('hero.titleAccent')}</span>
             </h1>
             <p className="text-lg lg:text-xl text-charcoal/80 mb-8 leading-relaxed">
-              Nunta360 helps Romanian couples manage every detail of their wedding—from guest lists to vendor bookings. Make your special day unforgettable with our intuitive planning tools.
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-                Start Planning
+                {t('hero.startPlanning')}
               </Button>
               <Button 
                 variant="outline" 
                 className="border-2 border-dustyRose-300 text-dustyRose-400 hover:bg-dustyRose-300 hover:text-white font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300"
               >
-                Explore Features
+                {t('hero.exploreFeatures')}
               </Button>
             </div>
           </div>

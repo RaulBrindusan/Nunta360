@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t, language, setLanguage } = useLanguage();
+
   return (
     <footer className="bg-charcoal text-white py-16">
       <div className="container mx-auto px-4 lg:px-8">
@@ -13,14 +16,24 @@ const Footer = () => {
               Nunta<span className="text-blush-300">360</span>
             </h3>
             <p className="text-white/70 leading-relaxed">
-              Making wedding planning beautiful, simple, and stress-free for Romanian couples.
+              {t('footer.tagline')}
             </p>
             <div className="flex items-center space-x-2 mt-4">
-              <Button variant="ghost" size="sm" className="text-white hover:text-blush-300 hover:bg-white/10">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className={`${language === 'ro' ? 'text-white' : 'text-white/70'} hover:text-blush-300 hover:bg-white/10`}
+                onClick={() => setLanguage('ro')}
+              >
                 RO
               </Button>
               <span className="text-white/40">|</span>
-              <Button variant="ghost" size="sm" className="text-white/70 hover:text-blush-300 hover:bg-white/10">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className={`${language === 'en' ? 'text-white' : 'text-white/70'} hover:text-blush-300 hover:bg-white/10`}
+                onClick={() => setLanguage('en')}
+              >
                 EN
               </Button>
             </div>
@@ -28,33 +41,33 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Product</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('footer.product')}</h4>
             <ul className="space-y-2">
-              <li><a href="#features" className="text-white/70 hover:text-blush-300 transition-colors">Features</a></li>
-              <li><a href="#pricing" className="text-white/70 hover:text-blush-300 transition-colors">Pricing</a></li>
-              <li><a href="#vendors" className="text-white/70 hover:text-blush-300 transition-colors">Vendors</a></li>
+              <li><a href="#features" className="text-white/70 hover:text-blush-300 transition-colors">{t('nav.features')}</a></li>
+              <li><a href="#pricing" className="text-white/70 hover:text-blush-300 transition-colors">{t('nav.pricing')}</a></li>
+              <li><a href="#vendors" className="text-white/70 hover:text-blush-300 transition-colors">{t('nav.vendors')}</a></li>
               <li><a href="#testimonials" className="text-white/70 hover:text-blush-300 transition-colors">Reviews</a></li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Support</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">Help Center</a></li>
-              <li><a href="#contact" className="text-white/70 hover:text-blush-300 transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">Wedding Guide</a></li>
-              <li><a href="#blog" className="text-white/70 hover:text-blush-300 transition-colors">Blog</a></li>
+              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.helpCenter')}</a></li>
+              <li><a href="#contact" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.contactUs')}</a></li>
+              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.weddingGuide')}</a></li>
+              <li><a href="#blog" className="text-white/70 hover:text-blush-300 transition-colors">{t('nav.blog')}</a></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Legal</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('footer.legal')}</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">Cookie Policy</a></li>
+              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.privacyPolicy')}</a></li>
+              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.termsOfService')}</a></li>
+              <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">{t('footer.cookiePolicy')}</a></li>
               <li><a href="#" className="text-white/70 hover:text-blush-300 transition-colors">GDPR</a></li>
             </ul>
           </div>
@@ -84,7 +97,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-white/60 text-sm">
-              © 2024 Nunta360. All rights reserved. Made with ❤️ in Romania.
+              {t('footer.copyright')}
             </p>
           </div>
         </div>

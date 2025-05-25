@@ -2,41 +2,44 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Calendar, User } from 'lucide-react';
-
-const features = [
-  {
-    icon: Users,
-    title: 'Vendor Discovery',
-    description: 'Find and connect with trusted Romanian wedding vendors in your area. From photographers to caterers, discover the perfect team for your special day.'
-  },
-  {
-    icon: Calendar,
-    title: 'Budget Planning',
-    description: 'Keep track of your wedding expenses with our intuitive budget planner. Set limits, monitor spending, and stay on track financially.'
-  },
-  {
-    icon: User,
-    title: 'Guest Management',
-    description: 'Easily manage your guest list, send invitations, and track RSVPs all in one place. Make seating arrangements a breeze.'
-  },
-  {
-    icon: Calendar,
-    title: 'Timeline Sync',
-    description: 'Coordinate every detail with our smart timeline feature. Sync with your calendar and never miss an important deadline.'
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const FeaturesSection = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Users,
+      title: t('features.vendorDiscovery'),
+      description: t('features.vendorDescription')
+    },
+    {
+      icon: Calendar,
+      title: t('features.budgetPlanning'),
+      description: t('features.budgetDescription')
+    },
+    {
+      icon: User,
+      title: t('features.guestManagement'),
+      description: t('features.guestDescription')
+    },
+    {
+      icon: Calendar,
+      title: t('features.timelineSync'),
+      description: t('features.timelineDescription')
+    }
+  ];
+
   return (
     <section id="features" className="py-20 bg-ivory">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-serif font-bold text-charcoal mb-6">
-            Everything You Need for Your
-            <span className="text-blush-400"> Dream Wedding</span>
+            {t('features.title')}
+            <span className="text-blush-400"> {t('features.titleAccent')}</span>
           </h2>
           <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
-            Our comprehensive planning tools help you organize every aspect of your wedding with ease and confidence.
+            {t('features.subtitle')}
           </p>
         </div>
 
