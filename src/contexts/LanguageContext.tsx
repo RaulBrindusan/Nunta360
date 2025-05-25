@@ -83,7 +83,22 @@ const translations = {
     'footer.privacyPolicy': 'Politica de Confidențialitate',
     'footer.termsOfService': 'Termenii de Serviciu',
     'footer.cookiePolicy': 'Politica Cookie',
-    'footer.copyright': '© 2024 Nunta360. Toate drepturile rezervate. Făcut cu ❤️ în România.'
+    'footer.copyright': '© 2024 Nunta360. Toate drepturile rezervate. Făcut cu ❤️ în România.',
+    
+    // Login Page
+    'login.title': 'Bine ai venit înapoi',
+    'login.subtitle': 'Conectează-te pentru a-ți continua planificarea nunții',
+    'login.email': 'Email',
+    'login.emailPlaceholder': 'nume@exemplu.com',
+    'login.password': 'Parolă',
+    'login.passwordPlaceholder': 'Introdu parola',
+    'login.signIn': 'Conectează-te',
+    'login.forgotPassword': 'Ai uitat parola?',
+    'login.noAccount': 'Nu ai cont?',
+    'login.signUp': 'Înregistrează-te',
+    'login.orContinueWith': 'Sau continuă cu',
+    'login.google': 'Google',
+    'login.facebook': 'Facebook'
   },
   en: {
     // Header
@@ -159,7 +174,22 @@ const translations = {
     'footer.privacyPolicy': 'Privacy Policy',
     'footer.termsOfService': 'Terms of Service',
     'footer.cookiePolicy': 'Cookie Policy',
-    'footer.copyright': '© 2024 Nunta360. All rights reserved.'
+    'footer.copyright': '© 2024 Nunta360. All rights reserved.',
+    
+    // Login Page
+    'login.title': 'Welcome back',
+    'login.subtitle': 'Sign in to continue planning your perfect wedding',
+    'login.email': 'Email',
+    'login.emailPlaceholder': 'name@example.com',
+    'login.password': 'Password',
+    'login.passwordPlaceholder': 'Enter your password',
+    'login.signIn': 'Sign In',
+    'login.forgotPassword': 'Forgot password?',
+    'login.noAccount': "Don't have an account?",
+    'login.signUp': 'Sign up',
+    'login.orContinueWith': 'Or continue with',
+    'login.google': 'Google',
+    'login.facebook': 'Facebook'
   }
 };
 
