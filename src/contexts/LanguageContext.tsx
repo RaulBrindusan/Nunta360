@@ -41,6 +41,33 @@ const translations = {
     'features.timelineSync': 'Sincronizarea Programului',
     'features.timelineDescription': 'Coordonează fiecare detaliu cu funcția noastră inteligentă de cronologie. Sincronizează cu calendarul tău și nu rata niciodată o dată importantă.',
     
+    // Showcase Section
+    'showcase.title': 'Au Avut Încredere în Noi Sute de',
+    'showcase.titleAccent': 'Cupluri Românești',
+    'showcase.subtitle': 'Alătură-te miilor de cupluri care și-au planificat nunta perfectă cu Nunta360',
+    'showcase.testimonial1': 'Nunta360 ne-a făcut planificarea nunții mult mai ușoară! Puteam urmări totul într-un singur loc.',
+    'showcase.testimonial2': 'Funcția de descoperire a furnizorilor ne-a ajutat să găsim profesioniști locali minunați. Recomand cu încredere!',
+    'showcase.testimonial3': 'Planificarea bugetului a fost o plăcere cu această aplicație. Am rămas în buget și am avut nunta de vis.',
+    'showcase.stats.couples': 'Cupluri Fericite',
+    'showcase.stats.vendors': 'Furnizori',
+    'showcase.stats.cities': 'Orașe',
+    'showcase.stats.satisfaction': 'Satisfacție',
+    
+    // Product Preview
+    'product.title': 'Planifică, Personalizează, Sărbătorește —',
+    'product.titleAccent': 'Totul într-o Singură Aplicație',
+    'product.subtitle': 'Descoperă cum Nunta360 simplifică fiecare aspect al călătoriei tale de planificare a nunții',
+    'product.guestList': 'Manager Lista Invitați',
+    'product.budgetTracker': 'Urmăritor Buget',
+    'product.vendorDirectory': 'Director Furnizori',
+    'product.timelinePlanner': 'Planificator Cronologie',
+    'product.feature1.title': 'Gestionare Inteligentă a Invitaților',
+    'product.feature1.description': 'Organizează lista de invitați, urmărește confirmările și gestionează cerințele dietetice într-o interfață intuitivă.',
+    'product.feature2.title': 'Planificare Inteligentă a Bugetului',
+    'product.feature2.description': 'Stabilește bugete, urmărește cheltuielile și primește informații pentru a lua decizii informate despre cheltuielile nunții.',
+    'product.feature3.title': 'Rețea Curată de Furnizori',
+    'product.feature3.description': 'Accesează rețeaua noastră verificată de profesioniști români pentru nunți și citește recenzii autentice de la alte cupluri.',
+    
     // CTA Banner
     'cta.title': 'Gata să Îți Începi Călătoria',
     'cta.titleAccent': 'Împreună?',
@@ -89,6 +116,33 @@ const translations = {
     'features.guestDescription': 'Easily manage your guest list, send invitations, and track RSVPs all in one place. Make seating arrangements a breeze.',
     'features.timelineSync': 'Timeline Sync',
     'features.timelineDescription': 'Coordinate every detail with our smart timeline feature. Sync with your calendar and never miss an important deadline.',
+    
+    // Showcase Section
+    'showcase.title': 'Trusted by Hundreds of',
+    'showcase.titleAccent': 'Romanian Couples',
+    'showcase.subtitle': 'Join thousands of couples who planned their perfect wedding with Nunta360',
+    'showcase.testimonial1': 'Nunta360 made our wedding planning so much easier! We could track everything in one place.',
+    'showcase.testimonial2': 'The vendor discovery feature helped us find amazing local professionals. Highly recommended!',
+    'showcase.testimonial3': 'Budget planning was a breeze with this app. We stayed within our budget and had our dream wedding.',
+    'showcase.stats.couples': 'Happy Couples',
+    'showcase.stats.vendors': 'Vendors',
+    'showcase.stats.cities': 'Cities',
+    'showcase.stats.satisfaction': 'Satisfaction',
+    
+    // Product Preview
+    'product.title': 'Plan, Customize, Celebrate —',
+    'product.titleAccent': 'All in One App',
+    'product.subtitle': 'Get a glimpse of how Nunta360 simplifies every aspect of your wedding planning journey',
+    'product.guestList': 'Guest List Manager',
+    'product.budgetTracker': 'Budget Tracker',
+    'product.vendorDirectory': 'Vendor Directory',
+    'product.timelinePlanner': 'Timeline Planner',
+    'product.feature1.title': 'Smart Guest Management',
+    'product.feature1.description': 'Organize your guest list, track RSVPs, and manage dietary requirements all in one intuitive interface.',
+    'product.feature2.title': 'Intelligent Budget Planning',
+    'product.feature2.description': 'Set budgets, track expenses, and get insights to help you make informed decisions about your wedding spending.',
+    'product.feature3.title': 'Curated Vendor Network',
+    'product.feature3.description': 'Access our vetted network of Romanian wedding professionals and read authentic reviews from other couples.',
     
     // CTA Banner
     'cta.title': 'Ready to Start Your Journey',
