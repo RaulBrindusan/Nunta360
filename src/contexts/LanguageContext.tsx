@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'ro' | 'en';
@@ -199,14 +200,11 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('ro');
 
   const t = (key: string): string => {
-    const keys = key.split('.');
-    let value: any = translations[language];
+    // Direct lookup in translations object
+    const translation = translations[language][key];
     
-    for (const k of keys) {
-      value = value?.[k];
-    }
-    
-    return value || key;
+    // Return the translation if found, otherwise return the key
+    return translation || key;
   };
 
   return (
