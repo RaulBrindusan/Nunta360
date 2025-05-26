@@ -1,15 +1,21 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const { user, signOut } = useAuth();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <header className="bg-ivory border-b border-blush-200 sticky top-0 z-50">
@@ -44,12 +50,33 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex">
-            <Link to="/login">
-              <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
-                {t('nav.getStarted')}
-              </Button>
-            </Link>
+          <div className="hidden md:flex items-center space-x-4">
+            {user ? (
+              <>
+                <Link to="/dashboard">
+                  <Button
+                    variant="outline"
+                    className="border-blush-300 text-charcoal hover:bg-blush-50"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <Button
+                  onClick={handleSignOut}
+                  variant="ghost"
+                  className="text-charcoal hover:text-blush-400"
+                >
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth">
+                <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-md hover:shadow-lg">
+                  {t('nav.getStarted')}
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -84,11 +111,26 @@ const Header = () => {
               <a href="#contact" className="block text-charcoal hover:text-blush-400 font-medium py-2">
                 {t('nav.contact')}
               </a>
-              <Link to="/login">
-                <Button className="w-full bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold mt-4">
-                  {t('nav.getStarted')}
-                </Button>
-              </Link>
+              {user ? (
+                <>
+                  <Link to="/dashboard" className="block text-charcoal hover:text-blush-400 font-medium py-2">
+                    Dashboard
+                  </Link>
+                  <Button
+                    onClick={handleSignOut}
+                    variant="ghost"
+                    className="w-full text-left justify-start text-charcoal hover:text-blush-400"
+                  >
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <Link to="/auth">
+                  <Button className="w-full bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold mt-4">
+                    {t('nav.getStarted')}
+                  </Button>
+                </Link>
+              )}
             </nav>
           </div>
         )}
