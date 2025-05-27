@@ -58,17 +58,44 @@ export const useWeddingDetails = () => {
     if (!user) return false;
 
     try {
-      const { data, error } = await supabase
+      // First check if wedding details already exist
+      const { data: existingData } = await supabase
         .from('wedding_details')
-        .upsert({
-          user_id: user.id,
-          bride_name: details.bride_name,
-          groom_name: details.groom_name,
-          wedding_date: details.wedding_date || null,
-          updated_at: new Date().toISOString(),
-        })
-        .select()
-        .single();
+        .select('id')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      let result;
+      
+      if (existingData) {
+        // Update existing record
+        result = await supabase
+          .from('wedding_details')
+          .update({
+            bride_name: details.bride_name,
+            groom_name: details.groom_name,
+            wedding_date: details.wedding_date || null,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('user_id', user.id)
+          .select()
+          .single();
+      } else {
+        // Insert new record
+        result = await supabase
+          .from('wedding_details')
+          .insert({
+            user_id: user.id,
+            bride_name: details.bride_name,
+            groom_name: details.groom_name,
+            wedding_date: details.wedding_date || null,
+            updated_at: new Date().toISOString(),
+          })
+          .select()
+          .single();
+      }
+
+      const { data, error } = result;
 
       if (error) {
         console.error('Error saving wedding details:', error);
@@ -88,6 +115,11 @@ export const useWeddingDetails = () => {
       return true;
     } catch (error) {
       console.error('Error saving wedding details:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save wedding details",
+        variant: "destructive",
+      });
       return false;
     }
   };
