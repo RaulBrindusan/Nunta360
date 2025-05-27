@@ -3,16 +3,27 @@ import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Heart, Calendar, Users, MapPin, Camera, DollarSign, CheckCircle, LogOut } from 'lucide-react';
+import { Heart, Calendar, Users, MapPin, Camera, DollarSign, CheckCircle, LogOut, Crown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useUserRole } from '@/hooks/useUserRole';
+import { useGuests } from '@/hooks/useGuests';
+import { useWeddingDetails } from '@/hooks/useWeddingDetails';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
+  const { role, loading: roleLoading } = useUserRole();
+  const { guests, loading: guestsLoading } = useGuests();
+  const { weddingDetails, loading: weddingLoading } = useWeddingDetails();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await signOut();
     navigate('/');
+  };
+
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return 'Not set';
+    return new Date(dateString).toLocaleDateString();
   };
 
   const dashboardCards = [
@@ -21,14 +32,22 @@ const Dashboard = () => {
       description: 'Set your special day',
       icon: Calendar,
       color: 'bg-blush-100 text-blush-600',
-      value: 'Not set',
+      value: weddingLoading ? 'Loading...' : formatDate(weddingDetails?.wedding_date),
     },
     {
       title: 'Guest List',
       description: 'Manage your invitations',
       icon: Users,
       color: 'bg-sage-100 text-sage-600',
-      value: '0 guests',
+      value: guestsLoading ? 'Loading...' : `${guests.length} guests`,
+    },
+    {
+      title: 'Bride & Groom',
+      description: 'Wedding couple details',
+      icon: Heart,
+      color: 'bg-pink-100 text-pink-600',
+      value: weddingLoading ? 'Loading...' : 
+        (weddingDetails ? `${weddingDetails.bride_name} & ${weddingDetails.groom_name}` : 'Not set'),
     },
     {
       title: 'Venues',
@@ -51,13 +70,6 @@ const Dashboard = () => {
       color: 'bg-green-100 text-green-600',
       value: '$0 spent',
     },
-    {
-      title: 'Tasks',
-      description: 'Stay organized',
-      icon: CheckCircle,
-      color: 'bg-orange-100 text-orange-600',
-      value: '0 completed',
-    },
   ];
 
   return (
@@ -73,9 +85,17 @@ const Dashboard = () => {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-charcoal/70">
-                Welcome, {user?.user_metadata?.first_name || user?.email}!
-              </span>
+              <div className="flex items-center space-x-2">
+                {!roleLoading && role === 'admin' && (
+                  <div className="flex items-center bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                    <Crown className="w-3 h-3 mr-1" />
+                    Admin
+                  </div>
+                )}
+                <span className="text-charcoal/70">
+                  Welcome, {user?.user_metadata?.first_name || user?.email?.split('@')[0]}!
+                </span>
+              </div>
               <Button
                 onClick={handleSignOut}
                 variant="outline"
@@ -146,7 +166,7 @@ const Dashboard = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold">
-                Set Wedding Date
+                Set Wedding Details
               </Button>
               <Button variant="outline" className="border-sage-300 text-sage-600 hover:bg-sage-50">
                 Add Guests
@@ -160,6 +180,37 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* Recent Activity */}
+        {guests.length > 0 && (
+          <Card className="border-blush-200 mt-6">
+            <CardHeader>
+              <CardTitle className="text-xl font-serif font-bold text-charcoal">
+                Recent Guests
+              </CardTitle>
+              <CardDescription>
+                Your latest guest additions
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {guests.slice(0, 5).map((guest) => (
+                  <div key={guest.id} className="flex items-center justify-between p-2 bg-blush-50 rounded-lg">
+                    <div>
+                      <p className="font-medium text-charcoal">{guest.name}</p>
+                      {guest.phone_number && (
+                        <p className="text-sm text-charcoal/70">{guest.phone_number}</p>
+                      )}
+                    </div>
+                    <span className="text-xs text-charcoal/60">
+                      {new Date(guest.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </main>
     </div>
   );
