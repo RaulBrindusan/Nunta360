@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Heart, Users, Calendar, Plus, Crown, User, LogOut } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import WelcomePopup from '@/components/WelcomePopup';
+import GuestFormPopup from '@/components/GuestFormPopup';
 
 const Dashboard = () => {
   const { t } = useLanguage();
@@ -18,6 +19,7 @@ const Dashboard = () => {
   const { guests, loading: guestsLoading } = useGuests();
   const { role, loading: roleLoading } = useUserRole();
   const [showWelcomePopup, setShowWelcomePopup] = useState(false);
+  const [showGuestForm, setShowGuestForm] = useState(false);
 
   // Show welcome popup for first-time users (those without wedding details)
   useEffect(() => {
@@ -113,29 +115,29 @@ const Dashboard = () => {
               {weddingDetails ? (
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <span className="font-medium text-sm text-charcoal/70 w-24">Bride:</span>
+                    <span className="font-medium text-sm text-charcoal/70 w-24">Mireasă:</span>
                     <span className="text-charcoal">{weddingDetails.bride_name}</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="font-medium text-sm text-charcoal/70 w-24">Groom:</span>
+                    <span className="font-medium text-sm text-charcoal/70 w-24">Mire:</span>
                     <span className="text-charcoal">{weddingDetails.groom_name}</span>
                   </div>
                   <div className="flex items-center">
-                    <span className="font-medium text-sm text-charcoal/70 w-24">Date:</span>
+                    <span className="font-medium text-sm text-charcoal/70 w-24">Data:</span>
                     <span className="text-charcoal">
-                      {weddingDetails.wedding_date ? new Date(weddingDetails.wedding_date).toLocaleDateString() : 'Not set'}
+                      {weddingDetails.wedding_date ? new Date(weddingDetails.wedding_date).toLocaleDateString('ro-RO') : 'Nu este stabilită'}
                     </span>
                   </div>
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <p className="text-charcoal/70 mb-3">No wedding details yet</p>
+                  <p className="text-charcoal/70 mb-3">{t('dashboard.noWeddingDetails')}</p>
                   <Button
                     onClick={() => setShowWelcomePopup(true)}
                     className="bg-blush-300 hover:bg-blush-400 text-charcoal"
                     size="sm"
                   >
-                    <Plus className="w-4 h-4 mr-2" /> Add Details
+                    <Plus className="w-4 h-4 mr-2" /> {t('dashboard.addDetails')}
                   </Button>
                 </div>
               )}
@@ -155,9 +157,13 @@ const Dashboard = () => {
                 <div className="text-4xl font-serif font-bold text-charcoal">
                   {guests.length}
                 </div>
-                <p className="text-charcoal/70 mt-2">Total Guests</p>
-                <Button className="mt-4 bg-blush-300 hover:bg-blush-400 text-charcoal" size="sm">
-                  <Plus className="w-4 h-4 mr-2" /> Add Guest
+                <p className="text-charcoal/70 mt-2">{t('dashboard.totalGuests')}</p>
+                <Button 
+                  onClick={() => setShowGuestForm(true)}
+                  className="mt-4 bg-blush-300 hover:bg-blush-400 text-charcoal" 
+                  size="sm"
+                >
+                  <Plus className="w-4 h-4 mr-2" /> {t('dashboard.addGuest')}
                 </Button>
               </div>
             </CardContent>
@@ -177,11 +183,11 @@ const Dashboard = () => {
                   <div className="text-4xl font-serif font-bold text-charcoal">
                     {Math.max(0, Math.ceil((new Date(weddingDetails.wedding_date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)))}
                   </div>
-                  <p className="text-charcoal/70 mt-2">Days Remaining</p>
+                  <p className="text-charcoal/70 mt-2">{t('dashboard.daysRemaining')}</p>
                 </div>
               ) : (
                 <div className="text-center py-4">
-                  <p className="text-charcoal/70">No wedding date set</p>
+                  <p className="text-charcoal/70">{t('dashboard.noWeddingDate')}</p>
                 </div>
               )}
             </CardContent>
@@ -193,6 +199,12 @@ const Dashboard = () => {
       <WelcomePopup 
         open={showWelcomePopup} 
         onClose={() => setShowWelcomePopup(false)}
+      />
+
+      {/* Guest Form Popup */}
+      <GuestFormPopup 
+        open={showGuestForm} 
+        onClose={() => setShowGuestForm(false)}
       />
     </div>
   );

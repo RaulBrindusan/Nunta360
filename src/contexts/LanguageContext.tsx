@@ -99,7 +99,49 @@ const translations = {
     'login.signUp': 'Înregistrează-te',
     'login.orContinueWith': 'Sau continuă cu',
     'login.google': 'Google',
-    'login.facebook': 'Facebook'
+    'login.facebook': 'Facebook',
+    
+    // Dashboard
+    'dashboard.welcome': 'Bun venit',
+    'dashboard.user': 'utilizator',
+    'dashboard.welcomeSubtitle': 'Gestionează și planifică fiecare detaliu al nunții tale perfecte',
+    'dashboard.weddingDetails': 'Detalii Nuntă',
+    'dashboard.guests': 'Invitați',
+    'dashboard.countdown': 'Numărătoare Inversă',
+    'dashboard.signOut': 'Deconectare',
+    'dashboard.totalGuests': 'Total Invitați',
+    'dashboard.addGuest': 'Adaugă Invitat',
+    'dashboard.daysRemaining': 'Zile Rămase',
+    'dashboard.noWeddingDate': 'Nu s-a stabilit data nunții',
+    'dashboard.addDetails': 'Adaugă Detalii',
+    'dashboard.noWeddingDetails': 'Nu există încă detalii despre nuntă',
+    
+    // Wedding Details Form
+    'weddingForm.welcome': 'Bun venit la Nunta360!',
+    'weddingForm.subtitle': 'Să începem prin a colecta câteva informații de bază despre ziua ta specială',
+    'weddingForm.brideName': 'Numele Miresei *',
+    'weddingForm.brideNamePlaceholder': 'Introdu numele miresei',
+    'weddingForm.groomName': 'Numele Mirelui *',
+    'weddingForm.groomNamePlaceholder': 'Introdu numele mirelui',
+    'weddingForm.weddingDate': 'Data Nunții (Opțional)',
+    'weddingForm.saveDetails': 'Salvează Detaliile',
+    'weddingForm.skipForNow': 'Sari pentru acum',
+    'weddingForm.saving': 'Se salvează...',
+    'weddingForm.requiredFieldsMissing': 'Câmpuri obligatorii lipsesc',
+    'weddingForm.enterBothNames': 'Te rog să introduci ambele nume ale miresei și mirelui',
+    
+    // Guest Form
+    'guestForm.title': 'Adaugă Invitat Nou',
+    'guestForm.subtitle': 'Introdu detaliile invitatului pentru a-l adăuga la lista ta',
+    'guestForm.guestName': 'Numele Invitatului *',
+    'guestForm.guestNamePlaceholder': 'Introdu numele complet',
+    'guestForm.phoneNumber': 'Numărul de Telefon (Opțional)',
+    'guestForm.phoneNumberPlaceholder': 'ex: +40 123 456 789',
+    'guestForm.addGuest': 'Adaugă Invitat',
+    'guestForm.cancel': 'Anulează',
+    'guestForm.adding': 'Se adaugă...',
+    'guestForm.nameRequired': 'Numele este obligatoriu',
+    'guestForm.enterGuestName': 'Te rog să introduci numele invitatului'
   },
   en: {
     // Header
@@ -190,7 +232,49 @@ const translations = {
     'login.signUp': 'Sign up',
     'login.orContinueWith': 'Or continue with',
     'login.google': 'Google',
-    'login.facebook': 'Facebook'
+    'login.facebook': 'Facebook',
+    
+    // Dashboard
+    'dashboard.welcome': 'Welcome',
+    'dashboard.user': 'user',
+    'dashboard.welcomeSubtitle': 'Manage and plan every detail of your perfect wedding',
+    'dashboard.weddingDetails': 'Wedding Details',
+    'dashboard.guests': 'Guests',
+    'dashboard.countdown': 'Countdown',
+    'dashboard.signOut': 'Sign Out',
+    'dashboard.totalGuests': 'Total Guests',
+    'dashboard.addGuest': 'Add Guest',
+    'dashboard.daysRemaining': 'Days Remaining',
+    'dashboard.noWeddingDate': 'No wedding date set',
+    'dashboard.addDetails': 'Add Details',
+    'dashboard.noWeddingDetails': 'No wedding details yet',
+    
+    // Wedding Details Form
+    'weddingForm.welcome': 'Welcome to Nunta360!',
+    'weddingForm.subtitle': "Let's start by collecting some basic information about your special day",
+    'weddingForm.brideName': "Bride's Name *",
+    'weddingForm.brideNamePlaceholder': "Enter bride's name",
+    'weddingForm.groomName': "Groom's Name *",
+    'weddingForm.groomNamePlaceholder': "Enter groom's name",
+    'weddingForm.weddingDate': 'Wedding Date (Optional)',
+    'weddingForm.saveDetails': 'Save Details',
+    'weddingForm.skipForNow': 'Skip for now',
+    'weddingForm.saving': 'Saving...',
+    'weddingForm.requiredFieldsMissing': 'Required fields missing',
+    'weddingForm.enterBothNames': 'Please enter both bride and groom names',
+    
+    // Guest Form
+    'guestForm.title': 'Add New Guest',
+    'guestForm.subtitle': 'Enter guest details to add them to your list',
+    'guestForm.guestName': 'Guest Name *',
+    'guestForm.guestNamePlaceholder': 'Enter full name',
+    'guestForm.phoneNumber': 'Phone Number (Optional)',
+    'guestForm.phoneNumberPlaceholder': 'e.g. +40 123 456 789',
+    'guestForm.addGuest': 'Add Guest',
+    'guestForm.cancel': 'Cancel',
+    'guestForm.adding': 'Adding...',
+    'guestForm.nameRequired': 'Name is required',
+    'guestForm.enterGuestName': 'Please enter guest name'
   }
 };
 
