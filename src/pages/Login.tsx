@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+
+import React, { useState } from 'react';
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useLanguage } from '@/contexts/LanguageContext';
+<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Heart } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
@@ -47,6 +53,21 @@ const Login = () => {
     } finally {
       setIsLoading(false);
     }
+=======
+import { Link } from 'react-router-dom';
+import { Eye, EyeOff, Heart } from 'lucide-react';
+
+const Login = () => {
+  const { t } = useLanguage();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Login attempt:', { email, password });
+    // Login logic will be implemented when Supabase is connected
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
   };
 
   return (
@@ -86,7 +107,10 @@ const Login = () => {
                 className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20"
                 placeholder={t('login.emailPlaceholder')}
                 required
+<<<<<<< HEAD
                 disabled={isLoading}
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
               />
             </div>
 
@@ -103,13 +127,19 @@ const Login = () => {
                   className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20 pr-10"
                   placeholder={t('login.passwordPlaceholder')}
                   required
+<<<<<<< HEAD
                   disabled={isLoading}
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-charcoal/60 hover:text-charcoal transition-colors"
+<<<<<<< HEAD
                   disabled={isLoading}
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -134,18 +164,29 @@ const Login = () => {
             <Button
               type="submit"
               className="w-full bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold py-3 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+<<<<<<< HEAD
               disabled={isLoading}
             >
               {isLoading ? t('login.signingIn') : t('login.signIn')}
+=======
+            >
+              {t('login.signIn')}
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-charcoal/70">
               {t('login.noAccount')}{' '}
+<<<<<<< HEAD
               <Link to="/signup" className="text-blush-400 hover:text-blush-500 font-medium transition-colors">
                 {t('login.signUp')}
               </Link>
+=======
+              <a href="#" className="text-blush-400 hover:text-blush-500 font-medium transition-colors">
+                {t('login.signUp')}
+              </a>
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
             </p>
           </div>
         </div>

@@ -1,6 +1,9 @@
 
+<<<<<<< HEAD
 'use client';
 
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 

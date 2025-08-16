@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 'use client';
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -88,14 +91,20 @@ const translations = {
     'footer.copyright': '© 2024 Nunta360. Toate drepturile rezervate. Făcut cu ❤️ în România.',
     
     // Login Page
+<<<<<<< HEAD
     'login.welcome': 'Bine ai revenit la Nunta360',
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.title': 'Bine ai venit înapoi',
     'login.subtitle': 'Conectează-te pentru a-ți continua planificarea nunții',
     'login.email': 'Email',
     'login.emailPlaceholder': 'nume@exemplu.com',
     'login.password': 'Parolă',
     'login.passwordPlaceholder': 'Introdu parola',
+<<<<<<< HEAD
     'login.rememberMe': 'Ține-mă minte',
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.signIn': 'Conectează-te',
     'login.forgotPassword': 'Ai uitat parola?',
     'login.noAccount': 'Nu ai cont?',
@@ -103,6 +112,7 @@ const translations = {
     'login.orContinueWith': 'Sau continuă cu',
     'login.google': 'Google',
     'login.facebook': 'Facebook',
+<<<<<<< HEAD
     'login.backToHome': 'Înapoi la pagina principală',
     // Signup Page
     'signup.welcome': 'Bun venit la Nunta360',
@@ -143,6 +153,50 @@ const translations = {
     'dashboard.decorations': 'Decorațiuni',
     'dashboard.music': 'Muzică & Entertainment',
     'dashboard.weddingDate': 'Data Nunții',
+=======
+    
+    // Dashboard
+    'dashboard.welcome': 'Bun venit',
+    'dashboard.user': 'utilizator',
+    'dashboard.welcomeSubtitle': 'Gestionează și planifică fiecare detaliu al nunții tale perfecte',
+    'dashboard.weddingDetails': 'Detalii Nuntă',
+    'dashboard.guests': 'Invitați',
+    'dashboard.countdown': 'Numărătoare Inversă',
+    'dashboard.signOut': 'Deconectare',
+    'dashboard.totalGuests': 'Total Invitați',
+    'dashboard.addGuest': 'Adaugă Invitat',
+    'dashboard.daysRemaining': 'Zile Rămase',
+    'dashboard.noWeddingDate': 'Nu s-a stabilit data nunții',
+    'dashboard.addDetails': 'Adaugă Detalii',
+    'dashboard.noWeddingDetails': 'Nu există încă detalii despre nuntă',
+    
+    // Wedding Details Form
+    'weddingForm.welcome': 'Bun venit la Nunta360!',
+    'weddingForm.subtitle': 'Să începem prin a colecta câteva informații de bază despre ziua ta specială',
+    'weddingForm.brideName': 'Numele Miresei *',
+    'weddingForm.brideNamePlaceholder': 'Introdu numele miresei',
+    'weddingForm.groomName': 'Numele Mirelui *',
+    'weddingForm.groomNamePlaceholder': 'Introdu numele mirelui',
+    'weddingForm.weddingDate': 'Data Nunții (Opțional)',
+    'weddingForm.saveDetails': 'Salvează Detaliile',
+    'weddingForm.skipForNow': 'Sari pentru acum',
+    'weddingForm.saving': 'Se salvează...',
+    'weddingForm.requiredFieldsMissing': 'Câmpuri obligatorii lipsesc',
+    'weddingForm.enterBothNames': 'Te rog să introduci ambele nume ale miresei și mirelui',
+    
+    // Guest Form
+    'guestForm.title': 'Adaugă Invitat Nou',
+    'guestForm.subtitle': 'Introdu detaliile invitatului pentru a-l adăuga la lista ta',
+    'guestForm.guestName': 'Numele Invitatului *',
+    'guestForm.guestNamePlaceholder': 'Introdu numele complet',
+    'guestForm.phoneNumber': 'Numărul de Telefon (Opțional)',
+    'guestForm.phoneNumberPlaceholder': 'ex: +40 123 456 789',
+    'guestForm.addGuest': 'Adaugă Invitat',
+    'guestForm.cancel': 'Anulează',
+    'guestForm.adding': 'Se adaugă...',
+    'guestForm.nameRequired': 'Numele este obligatoriu',
+    'guestForm.enterGuestName': 'Te rog să introduci numele invitatului'
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
   },
   en: {
     // Header
@@ -221,14 +275,20 @@ const translations = {
     'footer.copyright': '© 2024 Nunta360. All rights reserved.',
     
     // Login Page
+<<<<<<< HEAD
     'login.welcome': 'Welcome back to Nunta360',
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.title': 'Welcome back',
     'login.subtitle': 'Sign in to continue planning your perfect wedding',
     'login.email': 'Email',
     'login.emailPlaceholder': 'name@example.com',
     'login.password': 'Password',
     'login.passwordPlaceholder': 'Enter your password',
+<<<<<<< HEAD
     'login.rememberMe': 'Remember me',
+=======
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.signIn': 'Sign In',
     'login.forgotPassword': 'Forgot password?',
     'login.noAccount': "Don't have an account?",
@@ -236,6 +296,7 @@ const translations = {
     'login.orContinueWith': 'Or continue with',
     'login.google': 'Google',
     'login.facebook': 'Facebook',
+<<<<<<< HEAD
     'login.backToHome': 'Back to home',
     // Signup Page
     'signup.welcome': 'Welcome to Nunta360',
@@ -276,16 +337,71 @@ const translations = {
     'dashboard.decorations': 'Decorations',
     'dashboard.music': 'Music & Entertainment',
     'dashboard.weddingDate': 'Wedding Date',
+=======
+    
+    // Dashboard
+    'dashboard.welcome': 'Welcome',
+    'dashboard.user': 'user',
+    'dashboard.welcomeSubtitle': 'Manage and plan every detail of your perfect wedding',
+    'dashboard.weddingDetails': 'Wedding Details',
+    'dashboard.guests': 'Guests',
+    'dashboard.countdown': 'Countdown',
+    'dashboard.signOut': 'Sign Out',
+    'dashboard.totalGuests': 'Total Guests',
+    'dashboard.addGuest': 'Add Guest',
+    'dashboard.daysRemaining': 'Days Remaining',
+    'dashboard.noWeddingDate': 'No wedding date set',
+    'dashboard.addDetails': 'Add Details',
+    'dashboard.noWeddingDetails': 'No wedding details yet',
+    
+    // Wedding Details Form
+    'weddingForm.welcome': 'Welcome to Nunta360!',
+    'weddingForm.subtitle': "Let's start by collecting some basic information about your special day",
+    'weddingForm.brideName': "Bride's Name *",
+    'weddingForm.brideNamePlaceholder': "Enter bride's name",
+    'weddingForm.groomName': "Groom's Name *",
+    'weddingForm.groomNamePlaceholder': "Enter groom's name",
+    'weddingForm.weddingDate': 'Wedding Date (Optional)',
+    'weddingForm.saveDetails': 'Save Details',
+    'weddingForm.skipForNow': 'Skip for now',
+    'weddingForm.saving': 'Saving...',
+    'weddingForm.requiredFieldsMissing': 'Required fields missing',
+    'weddingForm.enterBothNames': 'Please enter both bride and groom names',
+    
+    // Guest Form
+    'guestForm.title': 'Add New Guest',
+    'guestForm.subtitle': 'Enter guest details to add them to your list',
+    'guestForm.guestName': 'Guest Name *',
+    'guestForm.guestNamePlaceholder': 'Enter full name',
+    'guestForm.phoneNumber': 'Phone Number (Optional)',
+    'guestForm.phoneNumberPlaceholder': 'e.g. +40 123 456 789',
+    'guestForm.addGuest': 'Add Guest',
+    'guestForm.cancel': 'Cancel',
+    'guestForm.adding': 'Adding...',
+    'guestForm.nameRequired': 'Name is required',
+    'guestForm.enterGuestName': 'Please enter guest name'
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
   }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+<<<<<<< HEAD
   const [language, setLanguage] = React.useState<'en' | 'ro'>('ro');
 
   const t = (key: string): string => {
     return translations[language][key] || key;
+=======
+  const [language, setLanguage] = useState<Language>('ro');
+
+  const t = (key: string): string => {
+    // Direct lookup in translations object
+    const translation = translations[language][key];
+    
+    // Return the translation if found, otherwise return the key
+    return translation || key;
+>>>>>>> c493688bf11b8df40335dff740eeed20607864ca
   };
 
   return (
