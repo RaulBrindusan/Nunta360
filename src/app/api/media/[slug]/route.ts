@@ -48,8 +48,11 @@ export async function GET(
         downloadURL: `${R2_PUBLIC_URL}/${file.Key}`,
         storagePath: file.Key,
         lastModified: file.LastModified?.toISOString(),
+        lastModifiedTimestamp: file.LastModified?.getTime() || 0,
       };
-    }).filter(file => file.fileName); // Filter out folders
+    })
+    .filter(file => file.fileName) // Filter out folders
+    .sort((a, b) => b.lastModifiedTimestamp - a.lastModifiedTimestamp); // Sort newest first
 
     return NextResponse.json({ files });
   } catch (error) {
