@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Upload, Check, X, Image as ImageIcon, Video, Plus, Camera } from 'lucide-react';
 import { db } from '@/lib/firebase';
-import { collection, query, where, getDocs, addDoc, serverTimestamp, onSnapshot, orderBy } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import {
   Dialog,
   DialogContent,
@@ -77,8 +77,8 @@ const UploadPage = () => {
     }
   }, [slug]);
 
-  // Fetch existing uploaded media
-  useEffect(() => {
+  // Fetch media from R2
+  const fetchMedia = async () => {
     if (!slug || !isValidPage) {
       setLoadingMedia(false);
       return;
@@ -86,35 +86,24 @@ const UploadPage = () => {
 
     try {
       setLoadingMedia(true);
-      const mediaRef = collection(db, 'uploaded_files');
-      const q = query(
-        mediaRef,
-        where('slug', '==', slug),
-        orderBy('uploadedAt', 'desc')
-      );
+      const response = await fetch(`/api/media/${slug}`);
 
-      // Real-time listener for new uploads
-      const unsubscribe = onSnapshot(
-        q,
-        (snapshot) => {
-          const media = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-          }));
-          setExistingMedia(media);
-          setLoadingMedia(false);
-        },
-        (error) => {
-          console.error('Error fetching media:', error);
-          setLoadingMedia(false);
-        }
-      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch media');
+      }
 
-      return () => unsubscribe();
+      const data = await response.json();
+      setExistingMedia(data.files || []);
+      setLoadingMedia(false);
     } catch (error) {
-      console.error('Error setting up media listener:', error);
+      console.error('Error fetching media:', error);
       setLoadingMedia(false);
     }
+  };
+
+  // Initial fetch
+  useEffect(() => {
+    fetchMedia();
   }, [slug, isValidPage]);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -168,19 +157,11 @@ const UploadPage = () => {
 
       const result = await response.json();
 
-      // Store file metadata in Firestore
-      await addDoc(collection(db, 'uploaded_files'), {
-        pageId: pageId,
-        slug: slug,
-        fileName: result.fileName,
-        fileType: result.fileType,
-        fileSize: result.fileSize,
-        downloadURL: result.url,
-        storagePath: result.storagePath,
-        uploadedAt: serverTimestamp(),
-      });
-
       setUploadProgress(100);
+
+      // Refresh media list
+      await fetchMedia();
+
       alert('Fotografie încărcată cu succes!');
     } catch (error) {
       console.error('Error uploading photo:', error);
@@ -221,18 +202,6 @@ const UploadPage = () => {
 
         const result = await response.json();
 
-        // Store file metadata in Firestore
-        await addDoc(collection(db, 'uploaded_files'), {
-          pageId: pageId,
-          slug: slug,
-          fileName: result.fileName,
-          fileType: result.fileType,
-          fileSize: result.fileSize,
-          downloadURL: result.url,
-          storagePath: result.storagePath,
-          uploadedAt: serverTimestamp(),
-        });
-
         // Update progress
         uploadedCount++;
         setUploadProgress(Math.round((uploadedCount / totalFiles) * 100));
@@ -248,6 +217,9 @@ const UploadPage = () => {
       setPreviewUrls([]);
       setUploadProgress(0);
       setUploadDialogOpen(false);
+
+      // Refresh media list
+      await fetchMedia();
 
       alert(`${uploadedFiles.length} fișiere încărcate cu succes!`);
     } catch (error) {
