@@ -56,13 +56,13 @@ async function syncR2ToFirestore(slug) {
     // List files from R2
     const command = new ListObjectsV2Command({
       Bucket: R2_BUCKET_NAME,
-      Prefix: `nunta360/nunta360/uploads/${slug}/`,
+      Prefix: `nunta360/uploads/${slug}/`,
     });
 
     const response = await r2Client.send(command);
 
     if (!response.Contents || response.Contents.length === 0) {
-      console.log(`❌ No files found in R2 at: nunta360/nunta360/uploads/${slug}/`);
+      console.log(`❌ No files found in R2 at: nunta360/uploads/${slug}/`);
       return;
     }
 

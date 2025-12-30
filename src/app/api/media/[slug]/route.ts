@@ -19,7 +19,7 @@ export async function GET(
     // List files from R2
     const command = new ListObjectsV2Command({
       Bucket: R2_BUCKET_NAME,
-      Prefix: `nunta360/nunta360/uploads/${slug}/`,
+      Prefix: `nunta360/uploads/${slug}/`,
     });
 
     const response = await r2Client.send(command);
