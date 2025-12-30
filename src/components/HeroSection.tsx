@@ -27,12 +27,6 @@ const HeroSection = () => {
                   {t('hero.startPlanning')}
                 </Button>
               </Link>
-              <Button 
-                variant="outline" 
-                className="border-2 border-dustyRose-300 text-dustyRose-400 hover:bg-dustyRose-300 hover:text-white font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300"
-              >
-                {t('hero.exploreFeatures')}
-              </Button>
             </div>
           </div>
 
@@ -45,22 +39,22 @@ const HeroSection = () => {
                     <span className="text-2xl">💕</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-charcoal">Wedding Planning</h3>
-                    <p className="text-charcoal/60 text-sm">Your journey starts here</p>
+                    <h3 className="font-semibold text-charcoal">{t('hero.planningTitle')}</h3>
+                    <p className="text-charcoal/60 text-sm">{t('hero.planningSubtitle')}</p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-sage-50 rounded-lg">
-                    <span className="text-charcoal font-medium">Guest List</span>
+                    <span className="text-charcoal font-medium">{t('hero.guestList')}</span>
                     <span className="text-sage-600 font-bold">120/150</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-blush-50 rounded-lg">
-                    <span className="text-charcoal font-medium">Budget</span>
+                    <span className="text-charcoal font-medium">{t('hero.budget')}</span>
                     <span className="text-blush-500 font-bold">€15,000</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-dustyRose-50 rounded-lg">
-                    <span className="text-charcoal font-medium">Vendors</span>
+                    <span className="text-charcoal font-medium">{t('hero.vendors')}</span>
                     <span className="text-dustyRose-500 font-bold">8/12</span>
                   </div>
                 </div>

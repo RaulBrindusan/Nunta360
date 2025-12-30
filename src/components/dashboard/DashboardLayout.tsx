@@ -6,6 +6,17 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Menu, LogOut, User } from 'lucide-react';
 import Sidebar from './Sidebar';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { useRouter } from 'next/navigation';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -24,14 +35,22 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 }) => {
   const { t } = useLanguage();
   const { user, signOut } = useAuth();
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [showLogoutDialog, setShowLogoutDialog] = React.useState(false);
 
-  const handleLogout = async () => {
+  const handleLogoutClick = () => {
+    setShowLogoutDialog(true);
+  };
+
+  const handleConfirmLogout = async () => {
     try {
       await signOut();
+      router.push('/');
     } catch (error) {
       console.error('Error logging out:', error);
     }
+    setShowLogoutDialog(false);
   };
 
   return (
@@ -50,10 +69,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <h1 className="text-2xl font-serif font-bold text-charcoal">
             Nunta<span className="text-blush-400">360</span>
           </h1>
-          <Button 
-            onClick={handleLogout}
-            variant="ghost" 
-            size="sm" 
+          <Button
+            onClick={handleLogoutClick}
+            variant="ghost"
+            size="sm"
             className="text-charcoal/70 hover:text-red-600"
           >
             <LogOut size={20} />
@@ -80,7 +99,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 <span>{user?.email}</span>
               </div>
               <Button
-                onClick={handleLogout}
+                onClick={handleLogoutClick}
                 variant="outline"
                 size="sm"
                 className="flex items-center gap-2 text-charcoal/70 hover:text-red-600 hover:border-red-200"
@@ -97,6 +116,31 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           {children}
         </main>
       </div>
+
+      {/* Logout Confirmation Dialog */}
+      <AlertDialog open={showLogoutDialog} onOpenChange={setShowLogoutDialog}>
+        <AlertDialogContent className="bg-white border-blush-200">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-charcoal font-serif">
+              Confirmare Deconectare
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-charcoal/70">
+              Ești sigur că vrei să te deconectezi? Vei fi redirecționat către pagina principală.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="border-gray-300 hover:bg-gray-100">
+              Nu
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmLogout}
+              className="bg-blush-500 hover:bg-blush-600 text-white"
+            >
+              Da
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

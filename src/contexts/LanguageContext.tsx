@@ -26,7 +26,12 @@ const translations = {
     'hero.subtitle': 'Nunta360 îi ajută pe cuplurile românești să gestioneze fiecare detaliu al nunții lor—de la lista de invitați la rezervarea furnizorilor.',
     'hero.startPlanning': 'Începe Planificarea',
     'hero.exploreFeatures': 'Explorează Funcționalitățile',
-    
+    'hero.planningTitle': 'Planificare Nuntă',
+    'hero.planningSubtitle': 'Călătoria ta începe aici',
+    'hero.guestList': 'Lista Invitați',
+    'hero.budget': 'Buget',
+    'hero.vendors': 'Furnizori',
+
     // Features Section
     'features.title': 'Tot ce ai nevoie pentru',
     'features.titleAccent': 'nunta perfectă',
@@ -99,9 +104,20 @@ const translations = {
     'dashboard.guests': 'Invitați',
     'dashboard.venue': 'Locație',
     'dashboard.budget': 'Buget',
+    'dashboard.qrCode': 'Cod QR',
     'dashboard.settings': 'Setări',
     'dashboard.weddingDate': 'Data nunții',
-    
+
+    // QR Code Page
+    'qrCode.title': 'Generator Cod QR',
+    'qrCode.subtitle': 'Generează un cod QR pentru a împărtăși detaliile nunții tale',
+    'qrCode.generate': 'Generează',
+    'qrCode.download': 'Descarcă QR',
+    'qrCode.inputLabel': 'Text sau URL',
+    'qrCode.inputPlaceholder': 'Introdu textul sau URL-ul pentru cod QR',
+    'qrCode.success': 'Cod QR generat cu succes',
+    'qrCode.error': 'Eroare la generarea codului QR',
+
     // Guest Form
     'guestForm.title': 'Adaugă Invitat',
     'guestForm.subtitle': 'Introdu detaliile invitatului pentru a-l adăuga la listă',
@@ -146,7 +162,12 @@ const translations = {
     'hero.subtitle': 'Nunta360 helps Romanian couples manage every detail of their wedding—from guest lists to vendor bookings.',
     'hero.startPlanning': 'Start Planning',
     'hero.exploreFeatures': 'Explore Features',
-    
+    'hero.planningTitle': 'Wedding Planning',
+    'hero.planningSubtitle': 'Your journey starts here',
+    'hero.guestList': 'Guest List',
+    'hero.budget': 'Budget',
+    'hero.vendors': 'Vendors',
+
     // Features Section
     'features.title': 'Everything you need for',
     'features.titleAccent': 'the perfect wedding',
@@ -219,9 +240,20 @@ const translations = {
     'dashboard.guests': 'Guests',
     'dashboard.venue': 'Venue',
     'dashboard.budget': 'Budget',
+    'dashboard.qrCode': 'QR Code',
     'dashboard.settings': 'Settings',
     'dashboard.weddingDate': 'Wedding date',
-    
+
+    // QR Code Page
+    'qrCode.title': 'QR Code Generator',
+    'qrCode.subtitle': 'Generate a QR code to share your wedding details',
+    'qrCode.generate': 'Generate',
+    'qrCode.download': 'Download QR',
+    'qrCode.inputLabel': 'Text or URL',
+    'qrCode.inputPlaceholder': 'Enter text or URL for QR code',
+    'qrCode.success': 'QR Code generated successfully',
+    'qrCode.error': 'Error generating QR code',
+
     // Guest Form
     'guestForm.title': 'Add Guest',
     'guestForm.subtitle': 'Enter guest details to add them to your list',

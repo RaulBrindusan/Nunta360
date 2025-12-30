@@ -90,5 +90,55 @@ service cloud.firestore {
         allow delete: if request.auth.uid == userId;
       }
     }
+
+    // QR Pages collection - for guest upload pages
+    match /qr_pages/{pageId} {
+      function isValidQRPage() {
+        let data = request.resource.data;
+        return data.slug is string
+               && data.slug.size() == 16
+               && data.isActive is bool;
+      }
+
+      allow read: if request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null
+                    && request.resource.data.userId == request.auth.uid
+                    && isValidQRPage();
+      allow update: if request.auth.uid == resource.data.userId
+                    && isValidQRPage();
+      allow delete: if request.auth.uid == resource.data.userId;
+    }
+
+    // Uploaded Files collection - for guest uploaded media
+    match /uploaded_files/{fileId} {
+      function isValidUploadedFile() {
+        let data = request.resource.data;
+        return data.fileName is string
+               && data.fileType is string
+               && data.fileSize is number
+               && data.fileSize <= 52428800  // 50MB max
+               && (data.fileType.matches('image/.*') || data.fileType.matches('video/.*'))
+               && data.downloadURL is string
+               && data.storagePath is string
+               && data.pageId is string
+               && data.slug is string;
+      }
+
+      // Anyone can create (guests upload files)
+      allow create: if isValidUploadedFile();
+
+      // Only page owner can read uploaded files
+      allow read: if request.auth != null
+                  && exists(/databases/$(database)/documents/qr_pages/$(resource.data.pageId))
+                  && get(/databases/$(database)/documents/qr_pages/$(resource.data.pageId)).data.userId == request.auth.uid;
+
+      // Only page owner can delete uploaded files
+      allow delete: if request.auth != null
+                    && exists(/databases/$(database)/documents/qr_pages/$(resource.data.pageId))
+                    && get(/databases/$(database)/documents/qr_pages/$(resource.data.pageId)).data.userId == request.auth.uid;
+
+      // No updates allowed
+      allow update: if false;
+    }
   }
 }
