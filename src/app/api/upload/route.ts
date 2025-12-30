@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     // Create unique filename
     const timestamp = Date.now();
     const fileName = `${timestamp}_${file.name}`;
-    const key = `nunta360/uploads/${slug}/${fileName}`;
+    const key = `nunta360/nunta360/uploads/${slug}/${fileName}`;
 
     // Convert file to buffer
     const arrayBuffer = await file.arrayBuffer();
