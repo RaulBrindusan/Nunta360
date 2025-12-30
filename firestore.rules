@@ -100,10 +100,15 @@ service cloud.firestore {
                && data.isActive is bool;
       }
 
-      allow read: if request.auth.uid == resource.data.userId;
+      // Allow anyone to read (guests need to validate slug)
+      allow read: if true;
+
+      // Only authenticated users can create their own QR page
       allow create: if request.auth != null
                     && request.resource.data.userId == request.auth.uid
                     && isValidQRPage();
+
+      // Only owner can update/delete
       allow update: if request.auth.uid == resource.data.userId
                     && isValidQRPage();
       allow delete: if request.auth.uid == resource.data.userId;
