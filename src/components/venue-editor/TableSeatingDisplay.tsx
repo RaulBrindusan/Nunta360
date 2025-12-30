@@ -25,12 +25,12 @@ const TableSeatingDisplay: React.FC<TableSeatingDisplayProps> = ({ objects }) =>
   const tables = objects.filter(obj => obj.type === 'main-table' || obj.type === 'masa');
 
   // Get wedding details
-  const brideName = eventDetails?.bride_name || 'Mireasa';
-  const groomName = eventDetails?.groom_name || 'Mirele';
-  const weddingDate = eventDetails?.wedding_date 
-    ? new Date(eventDetails.wedding_date).toLocaleDateString('ro-RO', {
+  const brideName = eventDetails?.brideName || 'Mireasa';
+  const groomName = eventDetails?.groomName || 'Mirele';
+  const weddingDate = eventDetails?.weddingDate
+    ? eventDetails.weddingDate.toDate().toLocaleDateString('ro-RO', {
         day: 'numeric',
-        month: 'long', 
+        month: 'long',
         year: 'numeric'
       })
     : 'Data nunții';

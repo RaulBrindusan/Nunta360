@@ -83,8 +83,8 @@ const GuestAssignmentPanel: React.FC<GuestAssignmentPanelProps> = ({
     
     // Check if guest is already assigned to this table
     const currentGuests = getGuestsForTable(tableId);
-    const isAlreadyAssigned = currentGuests.some(tableGuest => 
-      tableGuest.guest_id === guest.id || tableGuest.name === guest.name
+    const isAlreadyAssigned = currentGuests.some(tableGuest =>
+      tableGuest.guestId === guest.id || tableGuest.name === guest.name
     );
     
     if (isAlreadyAssigned) {
@@ -114,7 +114,7 @@ const GuestAssignmentPanel: React.FC<GuestAssignmentPanelProps> = ({
     if (!selectedObject) return guests;
     
     const currentGuests = getGuestsForTable(selectedObject.id);
-    const assignedGuestIds = currentGuests.map(tg => tg.guest_id).filter(Boolean);
+    const assignedGuestIds = currentGuests.map(tg => tg.guestId).filter(Boolean);
     const assignedGuestNames = currentGuests.map(tg => tg.name);
     
     return guests.filter(guest => 
@@ -259,13 +259,13 @@ const GuestAssignmentPanel: React.FC<GuestAssignmentPanelProps> = ({
                           >
                             <div className="flex-1">
                               <p className="font-elegant text-charcoal font-medium">{guest.name}</p>
-                              {guest.phone_number && (
-                                <p className="text-xs text-charcoal/60">{guest.phone_number}</p>
+                              {guest.phoneNumber && (
+                                <p className="text-xs text-charcoal/60">{guest.phoneNumber}</p>
                               )}
                               <div className="flex items-center gap-2 mt-1">
-                                {guest.is_family && (
+                                {guest.isFamily && (
                                   <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">
-                                    Familie ({guest.family_size})
+                                    Familie ({guest.familySize})
                                   </span>
                                 )}
                                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">

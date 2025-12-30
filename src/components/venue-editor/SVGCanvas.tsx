@@ -174,12 +174,12 @@ const SVGCanvas: React.FC<SVGCanvasProps> = ({
   // Touch zoom for mobile
   const [touchStartDistance, setTouchStartDistance] = useState(0);
   
-  const getTouchDistance = (touches: TouchList) => {
+  const getTouchDistance = (touches: React.TouchList) => {
     if (touches.length !== 2) return 0;
     const touch1 = touches[0];
     const touch2 = touches[1];
     return Math.sqrt(
-      Math.pow(touch2.clientX - touch1.clientX, 2) + 
+      Math.pow(touch2.clientX - touch1.clientX, 2) +
       Math.pow(touch2.clientY - touch1.clientY, 2)
     );
   };

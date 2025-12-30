@@ -1,7 +1,15 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
+  "/api/auth-test/route": "app/api/auth-test/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/guests/route": "app/api/guests/route.js",
+  "/api/table-guests/route": "app/api/table-guests/route.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/signup/page": "app/signup/page.js",
   "/dashboard/budget/page": "app/dashboard/budget/page.js",
-  "/dashboard/settings/page": "app/dashboard/settings/page.js",
   "/dashboard/guests/page": "app/dashboard/guests/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/dashboard/timeline/page": "app/dashboard/timeline/page.js",
   "/dashboard/venue/page": "app/dashboard/venue/page.js"
 }

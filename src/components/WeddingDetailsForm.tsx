@@ -36,9 +36,9 @@ const WeddingDetailsForm: React.FC<WeddingDetailsFormProps> = ({ onSuccess, onSk
 
     setLoading(true);
     const success = await saveWeddingDetails({
-      bride_name: brideName.trim(),
-      groom_name: groomName.trim(),
-      wedding_date: weddingDate || undefined,
+      brideName: brideName.trim(),
+      groomName: groomName.trim(),
+      weddingDate: weddingDate || undefined,
     });
 
     if (success) {

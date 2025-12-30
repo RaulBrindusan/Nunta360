@@ -84,6 +84,14 @@ const GuestForm: React.FC<GuestFormProps> = ({ onSuccess, onCancel }) => {
     setLoading(false);
   };
 
+  const handleStatusChange = (value: string) => {
+    setStatus(value as 'in_asteptare' | 'confirmat' | 'refuzat');
+  };
+
+  const handleMenuPreferenceChange = (value: string) => {
+    setMenuPreference(value as 'normal' | 'vegetarian' | 'vegan' | 'fara_gluten' | 'alte_alergii');
+  };
+
   return (
     <div className="space-y-6">
       <div className="text-center">
@@ -209,7 +217,7 @@ const GuestForm: React.FC<GuestFormProps> = ({ onSuccess, onCancel }) => {
             <Label htmlFor="status" className="text-charcoal font-medium">
               {t('guestForm.status')}
             </Label>
-            <Select value={status} onValueChange={setStatus}>
+            <Select value={status} onValueChange={handleStatusChange}>
               <SelectTrigger className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20">
                 <SelectValue />
               </SelectTrigger>
@@ -225,7 +233,7 @@ const GuestForm: React.FC<GuestFormProps> = ({ onSuccess, onCancel }) => {
             <Label htmlFor="menuPreference" className="text-charcoal font-medium">
               {t('guestForm.menuPreference')}
             </Label>
-            <Select value={menuPreference} onValueChange={setMenuPreference}>
+            <Select value={menuPreference} onValueChange={handleMenuPreferenceChange}>
               <SelectTrigger className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20">
                 <SelectValue />
               </SelectTrigger>

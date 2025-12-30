@@ -76,7 +76,7 @@ const VenueEditor = () => {
       properties: {
         color: savedSetting?.properties.color || defaultSetting.color,
         shape: savedSetting?.properties.shape || defaultSetting.shape,
-        seats: savedSetting?.properties.seats || defaultSetting.seats,
+        seats: savedSetting?.properties.seats || ('seats' in defaultSetting ? defaultSetting.seats : undefined),
         label: `${typeNames[type]} ${nextNumber}`,
       },
     };

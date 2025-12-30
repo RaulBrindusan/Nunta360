@@ -36,11 +36,11 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
     if (guest) {
       setFormData({
         name: guest.name,
-        phone_number: guest.phoneNumber || '',
-        is_family: guest.isFamily,
-        family_size: guest.familySize,
+        phoneNumber: guest.phoneNumber || '',
+        isFamily: guest.isFamily,
+        familySize: guest.familySize,
         status: guest.status,
-        menu_preference: guest.menuPreference,
+        menuPreference: guest.menuPreference,
       });
       setFamilyMembers(guest.familyMembers || []);
     }
@@ -49,22 +49,30 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
 
   // Update family members array when family size changes
   useEffect(() => {
-    if (formData.is_family && formData.family_size) {
+    if (formData.isFamily && formData.familySize) {
       setFamilyMembers(prev => {
-        const newFamilyMembers = Array(formData.family_size || 1).fill('').map((_, index) =>
+        const newFamilyMembers = Array(formData.familySize || 1).fill('').map((_, index) =>
           prev[index] || ''
         );
         return newFamilyMembers;
       });
-    } else if (!formData.is_family) {
+    } else if (!formData.isFamily) {
       setFamilyMembers([]);
     }
-  }, [formData.family_size, formData.is_family]);
+  }, [formData.familySize, formData.isFamily]);
 
   const handleFamilyMemberChange = (index: number, value: string) => {
     const newFamilyMembers = [...familyMembers];
     newFamilyMembers[index] = value;
     setFamilyMembers(newFamilyMembers);
+  };
+
+  const handleStatusChange = (value: string) => {
+    setFormData({ ...formData, status: value as 'in_asteptare' | 'confirmat' | 'refuzat' });
+  };
+
+  const handleMenuPreferenceChange = (value: string) => {
+    setFormData({ ...formData, menuPreference: value as 'normal' | 'vegetarian' | 'vegan' | 'fara_gluten' | 'alte_alergii' });
   };
 
   if (!guest) return null;
@@ -76,12 +84,12 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
     try {
       const updates: Partial<Guest> = {
         name: formData.name?.trim() || guest.name,
-        phoneNumber: formData.phone_number?.trim() || null,
-        isFamily: formData.is_family ?? guest.isFamily,
-        familySize: formData.family_size ?? guest.familySize,
+        phoneNumber: formData.phoneNumber?.trim() || undefined,
+        isFamily: formData.isFamily ?? guest.isFamily,
+        familySize: formData.familySize ?? guest.familySize,
         status: formData.status || guest.status,
-        menuPreference: formData.menu_preference || guest.menuPreference,
-        familyMembers: formData.is_family ? familyMembers.filter(name => name.trim() !== '') : [],
+        menuPreference: formData.menuPreference || guest.menuPreference,
+        familyMembers: formData.isFamily ? familyMembers.filter(name => name.trim() !== '') : [],
       };
 
       const success = await onUpdate(guest.id, updates);
@@ -116,11 +124,11 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
   const handleCancel = () => {
     setFormData({
       name: guest.name,
-      phone_number: guest.phoneNumber || '',
-      is_family: guest.isFamily,
-      family_size: guest.familySize,
+      phoneNumber: guest.phoneNumber || '',
+      isFamily: guest.isFamily,
+      familySize: guest.familySize,
       status: guest.status,
-      menu_preference: guest.menuPreference,
+      menuPreference: guest.menuPreference,
     });
     setFamilyMembers(guest.familyMembers || []);
     setIsEditing(false);
@@ -224,8 +232,8 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                   <Input
                     id="phoneNumber"
                     type="tel"
-                    value={formData.phone_number || ''}
-                    onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                    value={formData.phoneNumber || ''}
+                    onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                     className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20 pl-10"
                     placeholder="Numărul de telefon"
                   />
@@ -236,13 +244,13 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="isFamily"
-                    checked={formData.is_family ?? false}
+                    checked={formData.isFamily ?? false}
                     onCheckedChange={(checked) => {
                       const isFamilyChecked = checked as boolean;
                       setFormData({
                         ...formData,
-                        is_family: isFamilyChecked,
-                        family_size: isFamilyChecked ? Math.max(formData.family_size || 2, 2) : 1
+                        isFamily: isFamilyChecked,
+                        familySize: isFamilyChecked ? Math.max(formData.familySize || 2, 2) : 1
                       });
                     }}
                     className="border-blush-200 text-blush-400 focus:ring-blush-400/20"
@@ -252,7 +260,7 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                   </Label>
                 </div>
 
-                {formData.is_family && (
+                {formData.isFamily && (
                   <div className="space-y-4 ml-6">
                     <div className="space-y-2">
                       <Label htmlFor="familySize" className="text-charcoal font-medium">
@@ -263,12 +271,12 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                         type="number"
                         min="1"
                         max="20"
-                        value={formData.family_size || 2}
+                        value={formData.familySize || 2}
                         onChange={(e) => {
                           const newSize = parseInt(e.target.value) || 1;
                           setFormData({
                             ...formData,
-                            family_size: Math.max(1, Math.min(20, newSize))
+                            familySize: Math.max(1, Math.min(20, newSize))
                           });
                         }}
                         className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20 w-32"
@@ -276,13 +284,13 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                       />
                     </div>
 
-                    {(formData.family_size || 0) > 0 && (
+                    {(formData.familySize || 0) > 0 && (
                       <div className="space-y-3">
                         <Label className="text-charcoal font-medium">
                           Numele membrilor familiei
                         </Label>
                         <div className="space-y-2 max-h-48 overflow-y-auto">
-                          {Array.from({ length: formData.family_size || 1 }, (_, index) => (
+                          {Array.from({ length: formData.familySize || 1 }, (_, index) => (
                             <div key={index} className="flex items-center space-x-2">
                               <span className="text-sm text-charcoal/70 w-8">
                                 {index + 1}.
@@ -313,7 +321,7 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                   </Label>
                   <Select
                     value={formData.status || guest.status}
-                    onValueChange={(value) => setFormData({ ...formData, status: value })}
+                    onValueChange={handleStatusChange}
                   >
                     <SelectTrigger className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20">
                       <SelectValue placeholder="Selectează statusul" />
@@ -331,8 +339,8 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                     Preferințe meniu
                   </Label>
                   <Select
-                    value={formData.menu_preference || guest.menuPreference}
-                    onValueChange={(value) => setFormData({ ...formData, menu_preference: value })}
+                    value={formData.menuPreference || guest.menuPreference}
+                    onValueChange={handleMenuPreferenceChange}
                   >
                     <SelectTrigger className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20">
                       <SelectValue placeholder="Selectează tipul de meniu" />
@@ -512,7 +520,7 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                 <div className="space-y-1">
                   <Label className="text-charcoal/60">Adăugat la:</Label>
                   <p className="font-elegant text-charcoal">
-                    {new Date(guest.created_at).toLocaleDateString('ro-RO', {
+                    {guest.createdAt.toDate().toLocaleDateString('ro-RO', {
                       day: '2-digit',
                       month: '2-digit',
                       year: 'numeric',
@@ -524,7 +532,7 @@ const GuestDetailsModal: React.FC<GuestDetailsModalProps> = ({
                 <div className="space-y-1">
                   <Label className="text-charcoal/60">Ultima modificare:</Label>
                   <p className="font-elegant text-charcoal">
-                    {new Date(guest.updated_at).toLocaleDateString('ro-RO', {
+                    {guest.updatedAt.toDate().toLocaleDateString('ro-RO', {
                       day: '2-digit',
                       month: '2-digit',
                       year: 'numeric',
