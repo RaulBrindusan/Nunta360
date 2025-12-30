@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if request.auth.uid == userId;
+      allow create: if request.auth.uid == userId
+                    && request.resource.data.email == request.auth.token.email;
+      allow update: if request.auth.uid == userId;
+      allow delete: if false;
+
+      // Events subcollection
+      match /events/{eventId} {
+        allow read: if request.auth.uid == userId;
+        allow create: if request.auth.uid == userId
+                      && request.resource.data.userId == userId;
+        allow update: if request.auth.uid == userId;
+        allow delete: if request.auth.uid == userId;
+      }
+
+      // Guests subcollection
+      match /guests/{guestId} {
+        function isValidGuest() {
+          let data = request.resource.data;
+          return data.familySize >= 1
+                 && (data.isFamily == false ? data.familySize == 1 : data.familySize > 1)
+                 && data.status in ['in_asteptare', 'confirmat', 'refuzat']
+                 && data.menuPreference in ['normal', 'vegetarian', 'vegan', 'fara_gluten', 'alte_alergii'];
+        }
+
+        allow read: if request.auth.uid == userId;
+        allow create: if request.auth.uid == userId
+                      && request.resource.data.userId == userId
+                      && isValidGuest();
+        allow update: if request.auth.uid == userId
+                      && isValidGuest();
+        allow delete: if request.auth.uid == userId;
+      }
+
+      // Table guests subcollection
+      match /tableGuests/{tableGuestId} {
+        allow read: if request.auth.uid == userId;
+        allow create: if request.auth.uid == userId
+                      && request.resource.data.userId == userId;
+        allow update: if request.auth.uid == userId;
+        allow delete: if request.auth.uid == userId;
+      }
+
+      // Budget subcollection
+      match /budget/{budgetId} {
+        allow read: if request.auth.uid == userId;
+        allow create: if request.auth.uid == userId
+                      && request.resource.data.userId == userId;
+        allow update: if request.auth.uid == userId;
+        allow delete: if request.auth.uid == userId;
+
+        // Budget categories subcollection
+        match /categories/{categoryId} {
+          function isValidCategory() {
+            let data = request.resource.data;
+            return data.category in ['Locație', 'Catering', 'Decorațiuni & Flori', 'Fotograf & Videograf', 'Muzică & Entertainment', 'Rochie & Costum', 'Altele']
+                   && data.allocated >= 0;
+          }
+
+          allow read: if request.auth.uid == userId;
+          allow create: if request.auth.uid == userId
+                        && request.resource.data.userId == userId
+                        && isValidCategory();
+          allow update: if request.auth.uid == userId
+                        && isValidCategory();
+          allow delete: if request.auth.uid == userId;
+        }
+      }
+
+      // Expenses subcollection
+      match /expenses/{expenseId} {
+        function isValidExpense() {
+          let data = request.resource.data;
+          return data.category in ['Locație', 'Catering', 'Decorațiuni & Flori', 'Fotograf & Videograf', 'Muzică & Entertainment', 'Rochie & Costum', 'Altele']
+                 && data.price >= 0;
+        }
+
+        allow read: if request.auth.uid == userId;
+        allow create: if request.auth.uid == userId
+                      && request.resource.data.userId == userId
+                      && isValidExpense();
+        allow update: if request.auth.uid == userId
+                      && isValidExpense();
+        allow delete: if request.auth.uid == userId;
+      }
+    }
+  }
+}
