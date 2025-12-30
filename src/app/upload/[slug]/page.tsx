@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Upload, Check, X, Image as ImageIcon, Video, Plus } from 'lucide-react';
+import { Upload, Check, X, Image as ImageIcon, Video, Plus, Camera } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, query, where, getDocs, addDoc, serverTimestamp, onSnapshot, orderBy } from 'firebase/firestore';
 import {
@@ -31,6 +31,8 @@ const UploadPage = () => {
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
   const [existingMedia, setExistingMedia] = useState<any[]>([]);
   const [loadingMedia, setLoadingMedia] = useState(true);
+  const [showInfoPopup, setShowInfoPopup] = useState(false);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const validatePage = async () => {
@@ -66,39 +68,54 @@ const UploadPage = () => {
     validatePage();
   }, [slug]);
 
+  // Check if first visit and show info popup
+  useEffect(() => {
+    const hasVisited = localStorage.getItem(`visited_${slug}`);
+    if (!hasVisited) {
+      setShowInfoPopup(true);
+      localStorage.setItem(`visited_${slug}`, 'true');
+    }
+  }, [slug]);
+
   // Fetch existing uploaded media
   useEffect(() => {
-    if (!slug) return;
+    if (!slug || !isValidPage) {
+      setLoadingMedia(false);
+      return;
+    }
 
-    const fetchMedia = async () => {
-      try {
-        setLoadingMedia(true);
-        const mediaRef = collection(db, 'uploaded_files');
-        const q = query(
-          mediaRef,
-          where('slug', '==', slug),
-          orderBy('uploadedAt', 'desc')
-        );
+    try {
+      setLoadingMedia(true);
+      const mediaRef = collection(db, 'uploaded_files');
+      const q = query(
+        mediaRef,
+        where('slug', '==', slug),
+        orderBy('uploadedAt', 'desc')
+      );
 
-        // Real-time listener for new uploads
-        const unsubscribe = onSnapshot(q, (snapshot) => {
+      // Real-time listener for new uploads
+      const unsubscribe = onSnapshot(
+        q,
+        (snapshot) => {
           const media = snapshot.docs.map(doc => ({
             id: doc.id,
             ...doc.data()
           }));
           setExistingMedia(media);
           setLoadingMedia(false);
-        });
+        },
+        (error) => {
+          console.error('Error fetching media:', error);
+          setLoadingMedia(false);
+        }
+      );
 
-        return () => unsubscribe();
-      } catch (error) {
-        console.error('Error fetching media:', error);
-        setLoadingMedia(false);
-      }
-    };
-
-    fetchMedia();
-  }, [slug]);
+      return () => unsubscribe();
+    } catch (error) {
+      console.error('Error setting up media listener:', error);
+      setLoadingMedia(false);
+    }
+  }, [slug, isValidPage]);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files || []);
@@ -119,6 +136,62 @@ const UploadPage = () => {
     URL.revokeObjectURL(previewUrls[index]);
     setUploadedFiles(prev => prev.filter((_, i) => i !== index));
     setPreviewUrls(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleCameraClick = () => {
+    cameraInputRef.current?.click();
+  };
+
+  const handleCameraCapture = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
+    if (files.length === 0 || !pageId) return;
+
+    // Directly upload camera photo
+    setUploading(true);
+    setUploadProgress(0);
+
+    try {
+      const file = files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('slug', slug);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Upload failed');
+      }
+
+      const result = await response.json();
+
+      // Store file metadata in Firestore
+      await addDoc(collection(db, 'uploaded_files'), {
+        pageId: pageId,
+        slug: slug,
+        fileName: result.fileName,
+        fileType: result.fileType,
+        fileSize: result.fileSize,
+        downloadURL: result.url,
+        storagePath: result.storagePath,
+        uploadedAt: serverTimestamp(),
+      });
+
+      setUploadProgress(100);
+      alert('Fotografie încărcată cu succes!');
+    } catch (error) {
+      console.error('Error uploading photo:', error);
+      alert('A apărut o eroare la încărcarea fotografiei');
+    } finally {
+      setUploading(false);
+      setUploadProgress(0);
+      if (cameraInputRef.current) {
+        cameraInputRef.current.value = '';
+      }
+    }
   };
 
   const handleUpload = async () => {
@@ -238,8 +311,29 @@ const UploadPage = () => {
             </p>
           </div>
 
-          {/* Upload Button */}
-          <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
+          <div className="flex items-center gap-3">
+            {/* Hidden Camera Input */}
+            <input
+              ref={cameraInputRef}
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleCameraCapture}
+              className="hidden"
+            />
+
+            {/* Camera Button */}
+            <Button
+              onClick={handleCameraClick}
+              disabled={uploading}
+              variant="outline"
+              className="rounded-full w-12 h-12 p-0 border-blush-300 hover:bg-blush-50"
+            >
+              <Camera className="w-5 h-5 text-blush-500" />
+            </Button>
+
+            {/* Upload Button */}
+            <Dialog open={uploadDialogOpen} onOpenChange={setUploadDialogOpen}>
             <DialogTrigger asChild>
               <Button className="bg-blush-500 hover:bg-blush-600 rounded-full w-12 h-12 p-0">
                 <Plus className="w-6 h-6" />
@@ -333,6 +427,7 @@ const UploadPage = () => {
               </div>
             </DialogContent>
           </Dialog>
+          </div>
         </div>
       </header>
 
@@ -398,6 +493,43 @@ const UploadPage = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Welcome Info Popup - Shows only on first visit */}
+      <Dialog open={showInfoPopup} onOpenChange={setShowInfoPopup}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-serif text-charcoal">
+              Bine ai venit! 🎉
+            </DialogTitle>
+            <DialogDescription className="text-base pt-4 space-y-3">
+              <p>
+                <strong className="text-charcoal">Mulțumim că participi la acest eveniment special!</strong>
+              </p>
+              <p className="text-charcoal/80">
+                Pozele și videoclipurile tale vor fi partajate cu cuplul pentru amintiri de neuitat.
+              </p>
+              <div className="bg-blush-50 p-3 rounded-lg mt-4">
+                <p className="text-sm text-charcoal/70">
+                  <strong>💡 Cum funcționează:</strong>
+                </p>
+                <ul className="text-sm text-charcoal/70 mt-2 space-y-1 list-disc list-inside">
+                  <li>Apasă <Camera className="w-4 h-4 inline" /> pentru a face o poză direct</li>
+                  <li>Apasă <Plus className="w-4 h-4 inline" /> pentru a încărca mai multe fișiere</li>
+                  <li>Toate fotografiile sunt salvate automat în galerie</li>
+                </ul>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end pt-4">
+            <Button
+              onClick={() => setShowInfoPopup(false)}
+              className="bg-blush-500 hover:bg-blush-600"
+            >
+              Am înțeles!
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
