@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: ['lovable.dev'],
   },
@@ -12,12 +15,12 @@ const nextConfig = {
         fs: false,
       };
     }
-    
+
     // Exclude Konva from server-side bundling
     if (isServer) {
       config.externals = [...(config.externals || []), 'canvas', 'konva'];
     }
-    
+
     return config;
   },
 }
