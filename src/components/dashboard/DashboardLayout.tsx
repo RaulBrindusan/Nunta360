@@ -4,7 +4,7 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Menu, Bell } from 'lucide-react';
+import { Menu, LogOut, User } from 'lucide-react';
 import Sidebar from './Sidebar';
 
 interface DashboardLayoutProps {
@@ -12,22 +12,32 @@ interface DashboardLayoutProps {
   title?: string;
   subtitle?: string;
   showWeddingInfo?: boolean;
+  headerLeft?: React.ReactNode;
 }
 
-const DashboardLayout: React.FC<DashboardLayoutProps> = ({ 
-  children, 
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({
+  children,
   title,
   subtitle,
-  showWeddingInfo = true 
+  showWeddingInfo = true,
+  headerLeft
 }) => {
   const { t } = useLanguage();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-ivory flex flex-col lg:flex-row">
       {/* Mobile Header */}
-      <header className="lg:hidden bg-white border-b border-blush-100 p-4 sticky top-0 z-50">
+      <header className="lg:hidden bg-white border-b border-gray-200 p-4 sticky top-0 z-50">
         <div className="flex items-center justify-between">
           <Button
             variant="ghost"
@@ -40,8 +50,13 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           <h1 className="text-2xl font-serif font-bold text-charcoal">
             Nunta<span className="text-blush-400">360</span>
           </h1>
-          <Button variant="ghost" size="sm" className="text-charcoal/70 hover:text-blush-400">
-            <Bell size={20} />
+          <Button 
+            onClick={handleLogout}
+            variant="ghost" 
+            size="sm" 
+            className="text-charcoal/70 hover:text-red-600"
+          >
+            <LogOut size={20} />
           </Button>
         </div>
       </header>
@@ -51,19 +66,29 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Desktop Header */}
-        <header className="hidden lg:block bg-white border-b border-blush-100 p-4">
-          <div className="flex flex-col items-center justify-center text-center">
-            {showWeddingInfo ? (
-              <>
-                <p className="font-medium text-2xl text-charcoal mb-1">Maria & Alexandru</p>
-                <p className="text-charcoal/70">{t('dashboard.weddingDate')}: 15.08.2024</p>
-              </>
-            ) : (
-              <>
-                {title && <h1 className="font-medium text-2xl text-charcoal mb-1">{title}</h1>}
-                {subtitle && <p className="text-charcoal/70">{subtitle}</p>}
-              </>
-            )}
+        <header className="hidden lg:block bg-white border-b border-gray-200 px-6 py-3">
+          <div className="flex items-center justify-between">
+            {/* Left side content (e.g., search bar) */}
+            <div className="flex items-center">
+              {headerLeft}
+            </div>
+
+            {/* User Info & Logout */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-sm text-charcoal/70">
+                <User className="w-4 h-4" />
+                <span>{user?.email}</span>
+              </div>
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2 text-charcoal/70 hover:text-red-600 hover:border-red-200"
+              >
+                <LogOut className="w-4 h-4" />
+                Deconectare
+              </Button>
+            </div>
           </div>
         </header>
 

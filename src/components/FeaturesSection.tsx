@@ -1,73 +1,62 @@
-
-<<<<<<< HEAD
 'use client';
 
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, Calendar, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Users, Calendar, DollarSign, Clock } from 'lucide-react';
 
 const FeaturesSection = () => {
   const { t } = useLanguage();
 
   const features = [
     {
-      icon: Users,
-      title: t('features.vendorDiscovery'),
-      description: t('features.vendorDescription')
-    },
-    {
-      icon: Calendar,
-      title: t('features.budgetPlanning'),
-      description: t('features.budgetDescription')
-    },
-    {
-      icon: User,
+      icon: <Users className="w-8 h-8 text-blush-400" />,
       title: t('features.guestManagement'),
-      description: t('features.guestDescription')
+      description: t('features.guestDescription'),
     },
     {
-      icon: Calendar,
+      icon: <DollarSign className="w-8 h-8 text-sage-500" />,
+      title: t('features.budgetPlanning'),
+      description: t('features.budgetDescription'),
+    },
+    {
+      icon: <Calendar className="w-8 h-8 text-dustyRose-400" />,
+      title: t('features.vendorDiscovery'),
+      description: t('features.vendorDescription'),
+    },
+    {
+      icon: <Clock className="w-8 h-8 text-blush-400" />,
       title: t('features.timelineSync'),
-      description: t('features.timelineDescription')
-    }
+      description: t('features.timelineDescription'),
+    },
   ];
 
   return (
-    <section id="features" className="py-20 bg-ivory">
+    <section className="py-20 lg:py-32 bg-white" id="features">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-5xl font-serif font-bold text-charcoal mb-6">
-            {t('features.title')}
-            <span className="text-blush-400"> {t('features.titleAccent')}</span>
+            {t('features.title')}{' '}
+            <span className="text-blush-400">{t('features.titleAccent')}</span>
           </h2>
-          <p className="text-lg text-charcoal/70 max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-charcoal/70 max-w-3xl mx-auto">
             {t('features.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-xl transition-all duration-300 border-blush-200 hover:border-blush-300 bg-white hover:bg-gradient-to-br hover:from-blush-50 hover:to-sage-50"
+            <div
+              key={index}
+              className="bg-gradient-to-br from-ivory to-blush-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blush-100"
             >
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blush-200 to-dustyRose-200 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-8 h-8 text-charcoal" />
-                </div>
-                <CardTitle className="text-xl font-semibold text-charcoal">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-charcoal/70 text-center leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <div className="mb-6">{feature.icon}</div>
+              <h3 className="text-xl font-serif font-bold text-charcoal mb-4">
+                {feature.title}
+              </h3>
+              <p className="text-charcoal/70 leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>

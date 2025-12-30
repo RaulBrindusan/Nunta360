@@ -1,14 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { createClient } from '@/utils/supabase/middleware';
 
 export async function middleware(request: NextRequest) {
-  const { supabase, response } = createClient(request);
-
-  // Refresh session if expired - required for Server Components
-  await supabase.auth.getSession();
-
-  return response;
+  // Firebase authentication is handled client-side via AuthContext
+  // This middleware is simplified since we're using client-side auth only
+  return NextResponse.next();
 }
 
 export const config = {

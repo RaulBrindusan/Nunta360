@@ -6,17 +6,15 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/lib/supabase';
 import {
   Calendar,
   Users,
   Settings,
-  LogOut,
   Heart,
   CreditCard,
   X,
   BarChart3,
-  Clock,
+  MapPin,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -30,53 +28,39 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const pathname = usePathname();
 
   const navItems = [
-    { 
-      icon: Heart, 
-      label: t('dashboard.overview'), 
-      path: '/dashboard',
-      description: 'Wedding planning overview and progress'
+    {
+      icon: Heart,
+      label: t('dashboard.overview'),
+      path: '/dashboard'
     },
-    { 
-      icon: Clock, 
-      label: t('dashboard.timeline'), 
-      path: '/dashboard/timeline',
-      description: 'Wedding timeline and calendar events'
+    {
+      icon: Users,
+      label: t('dashboard.guests'),
+      path: '/dashboard/guests'
     },
-    { 
-      icon: Users, 
-      label: t('dashboard.guests'), 
-      path: '/dashboard/guests',
-      description: 'Guest list management and RSVPs'
+    {
+      icon: MapPin,
+      label: t('dashboard.venue'),
+      path: '/dashboard/venue'
     },
-    { 
-      icon: CreditCard, 
-      label: t('dashboard.budget'), 
-      path: '/dashboard/budget',
-      description: 'Budget tracking and expense management'
+    {
+      icon: CreditCard,
+      label: t('dashboard.budget'),
+      path: '/dashboard/budget'
     },
-    { 
-      icon: Settings, 
-      label: t('dashboard.settings'), 
-      path: '/dashboard/settings',
-      description: 'Account and wedding settings'
+    {
+      icon: Settings,
+      label: t('dashboard.settings'),
+      path: '/dashboard/settings'
     },
   ];
-
-  const handleLogout = async () => {
-    try {
-      await supabase.auth.signOut();
-      onClose();
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
 
   return (
     <>
       <aside
         className={`${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 fixed lg:static top-0 left-0 h-screen lg:h-auto w-64 bg-white border-r border-blush-100 transition-transform duration-300 ease-in-out z-50 lg:z-auto flex flex-col`}
+        } lg:translate-x-0 fixed lg:static top-0 left-0 h-screen lg:h-auto w-64 bg-white border-r border-gray-200 transition-transform duration-300 ease-in-out z-50 lg:z-auto flex flex-col shadow-lg lg:shadow-none`}
       >
         <div className="flex flex-col h-full lg:min-h-screen">
           {/* Header */}
@@ -102,16 +86,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                   <Heart className="w-6 h-6 text-blush-600" />
                 </div>
                 <p className="text-sm font-medium text-charcoal">
-                  {user.email?.split('@')[0] || 'Wedding Planner'}
+                  Planning your perfect day
                 </p>
-                <p className="text-xs text-charcoal/60">Planning your perfect day</p>
+                <p className="text-xs text-charcoal/60">Wedding Planner</p>
               </div>
             </div>
           )}
 
           {/* Navigation */}
-          <nav className="flex-1 px-2 py-4 overflow-y-auto">
-            <div className="space-y-1">
+          <nav className="flex-1 px-3 py-6 overflow-y-auto">
+            <div className="space-y-2">
               {navItems.map((item) => {
                 const isActive = pathname === item.path || 
                   (item.path === '/dashboard' && pathname === '/dashboard');
@@ -119,47 +103,35 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 return (
                   <Link
                     key={item.label}
-                    to={item.path}
+                    href={item.path}
                     onClick={onClose}
-                    className={`group flex flex-col px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
                       isActive 
-                        ? 'bg-blush-100 text-blush-700 shadow-sm' 
-                        : 'text-charcoal/70 hover:bg-blush-50 hover:text-blush-600'
+                        ? 'bg-blush-100 text-blush-700 shadow-sm border border-blush-200' 
+                        : 'text-charcoal/70 hover:bg-gray-50 hover:text-blush-600'
                     }`}
                   >
-                    <div className="flex items-center">
-                      <item.icon 
-                        size={20} 
-                        className={`${isActive ? 'text-blush-600' : 'text-charcoal/50 group-hover:text-blush-500'}`} 
-                      />
-                      <span className="ml-3">{item.label}</span>
-                    </div>
-                    <p className={`text-xs mt-1 ml-8 ${
-                      isActive ? 'text-blush-600/80' : 'text-charcoal/40 group-hover:text-blush-500/80'
-                    }`}>
-                      {item.description}
-                    </p>
+                    <item.icon 
+                      size={18} 
+                      className={`${isActive ? 'text-blush-600' : 'text-charcoal/50 group-hover:text-blush-500'}`} 
+                    />
+                    <span className="ml-3 font-medium">{item.label}</span>
                   </Link>
                 );
               })}
             </div>
           </nav>
 
-          {/* Footer with Logout */}
+          {/* Footer */}
           <div className="border-t border-blush-100 p-4">
-            <Button
-              variant="ghost"
-              onClick={handleLogout}
-              className="w-full flex items-center justify-center gap-3 text-charcoal/70 hover:text-red-600 hover:bg-red-50 py-3 rounded-lg transition-all duration-200"
-            >
-              <LogOut size={18} />
-              <span className="text-sm font-medium">{t('dashboard.logout')}</span>
-            </Button>
-            
             {/* Project Info */}
-            <div className="mt-3 text-center">
+            <div className="text-center">
               <p className="text-xs text-charcoal/40">Nunta360 v1.0</p>
-              <p className="text-xs text-charcoal/30">Wedding Planning Platform</p>
+              <p className="text-xs text-charcoal/30 flex items-center justify-center gap-1">
+                Made by Codemint
+                <Heart className="w-3 h-3 text-blush-400 fill-blush-400" />
+                @2025
+              </p>
             </div>
           </div>
         </div>

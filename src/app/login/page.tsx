@@ -8,13 +8,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Heart } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 
 export default function LoginPage() {
   const { t } = useLanguage();
   const router = useRouter();
   const { toast } = useToast();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -25,26 +26,22 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      // Sign in using Firebase Auth
+      const { error } = await signIn(email, password);
 
       if (error) {
         throw error;
       }
 
-      if (data.user) {
-        toast({
-          title: t('login.success'),
-          description: t('login.welcomeBack'),
-        });
-        router.push('/dashboard');
-      }
+      toast({
+        title: t('login.success'),
+        description: t('login.welcomeBack'),
+      });
+      router.push('/dashboard');
     } catch (error: any) {
       toast({
         title: t('login.error'),
-        description: error.message,
+        description: error.message || 'Invalid email or password',
         variant: 'destructive',
       });
     } finally {

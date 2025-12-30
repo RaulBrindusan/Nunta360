@@ -9,6 +9,36 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      events: {
+        Row: {
+          id: string
+          user_id: string
+          bride_name: string
+          groom_name: string
+          wedding_date: string
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          bride_name: string
+          groom_name: string
+          wedding_date: string
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          bride_name?: string
+          groom_name?: string
+          wedding_date?: string
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       guests: {
         Row: {
           created_at: string | null
@@ -17,6 +47,11 @@ export type Database = {
           phone_number: string | null
           updated_at: string | null
           user_id: string
+          is_family: boolean
+          family_size: number
+          status: string
+          menu_preference: string
+          family_members: string[] | null
         }
         Insert: {
           created_at?: string | null
@@ -25,6 +60,11 @@ export type Database = {
           phone_number?: string | null
           updated_at?: string | null
           user_id: string
+          is_family?: boolean
+          family_size?: number
+          status?: string
+          menu_preference?: string
+          family_members?: string[] | null
         }
         Update: {
           created_at?: string | null
@@ -33,6 +73,11 @@ export type Database = {
           phone_number?: string | null
           updated_at?: string | null
           user_id?: string
+          is_family?: boolean
+          family_size?: number
+          status?: string
+          menu_preference?: string
+          family_members?: string[] | null
         }
         Relationships: []
       }
@@ -60,6 +105,69 @@ export type Database = {
           id?: string
           last_name?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      table_guests: {
+        Row: {
+          created_at: string | null
+          event_id: string | null
+          id: string
+          name: string
+          table_id: string
+          table_name: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          event_id?: string | null
+          id?: string
+          name: string
+          table_id: string
+          table_name?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          event_id?: string | null
+          id?: string
+          name?: string
+          table_id?: string
+          table_name?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      users: {
+        Row: {
+          id: string
+          auth_id: string | null
+          email: string | null
+          full_name: string | null
+          phone: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          auth_id?: string | null
+          email?: string | null
+          full_name?: string | null
+          phone?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          auth_id?: string | null
+          email?: string | null
+          full_name?: string | null
+          phone?: string | null
+          created_at?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }

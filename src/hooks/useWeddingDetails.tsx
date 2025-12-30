@@ -1,16 +1,28 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import {
+  collection,
+  query,
+  onSnapshot,
+  addDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+  Timestamp,
+  limit,
+  getDocs,
+} from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export interface WeddingDetails {
   id: string;
-  bride_name: string;
-  groom_name: string;
-  wedding_date?: string;
-  created_at: string;
-  updated_at: string;
+  userId: string;
+  brideName: string;
+  groomName: string;
+  weddingDate?: Timestamp;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }
 
 export const useWeddingDetails = () => {
@@ -18,120 +30,120 @@ export const useWeddingDetails = () => {
   const { toast } = useToast();
   const [weddingDetails, setWeddingDetails] = useState<WeddingDetails | null>(null);
   const [loading, setLoading] = useState(true);
+  const [eventId, setEventId] = useState<string | null>(null);
 
-  const fetchWeddingDetails = async () => {
+  // Real-time listener for wedding event (first event only)
+  useEffect(() => {
     if (!user) {
       setWeddingDetails(null);
       setLoading(false);
       return;
     }
 
-    try {
-      const { data, error } = await supabase
-        .from('wedding_details')
-        .select('*')
-        .eq('user_id', user.id)
-        .maybeSingle();
+    // Reference to user's events subcollection
+    const eventsRef = collection(db, 'users', user.id, 'events');
+    const q = query(eventsRef, limit(1)); // Get first event only
 
-      if (error) {
+    // Subscribe to real-time updates
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        if (!snapshot.empty) {
+          const eventDoc = snapshot.docs[0];
+          const eventData = {
+            id: eventDoc.id,
+            ...eventDoc.data(),
+          } as WeddingDetails;
+
+          setWeddingDetails(eventData);
+          setEventId(eventDoc.id);
+        } else {
+          setWeddingDetails(null);
+          setEventId(null);
+        }
+        setLoading(false);
+      },
+      (error) => {
         console.error('Error fetching wedding details:', error);
         toast({
-          title: "Error",
-          description: "Failed to fetch wedding details",
+          title: "Eroare",
+          description: "Nu s-au putut încărca detaliile nunții",
           variant: "destructive",
         });
-      } else {
-        setWeddingDetails(data);
+        setWeddingDetails(null);
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Error fetching wedding details:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, [user]);
 
   const saveWeddingDetails = async (details: {
-    bride_name: string;
-    groom_name: string;
-    wedding_date?: string;
+    brideName: string;
+    groomName: string;
+    weddingDate?: Date | string;
   }) => {
     if (!user) return false;
 
     try {
-      // First check if wedding details already exist
-      const { data: existingData } = await supabase
-        .from('wedding_details')
-        .select('id')
-        .eq('user_id', user.id)
-        .maybeSingle();
+      const eventsRef = collection(db, 'users', user.id, 'events');
 
-      let result;
-      
-      if (existingData) {
-        // Update existing record
-        result = await supabase
-          .from('wedding_details')
-          .update({
-            bride_name: details.bride_name,
-            groom_name: details.groom_name,
-            wedding_date: details.wedding_date || null,
-            updated_at: new Date().toISOString(),
-          })
-          .eq('user_id', user.id)
-          .select()
-          .single();
-      } else {
-        // Insert new record
-        result = await supabase
-          .from('wedding_details')
-          .insert({
-            user_id: user.id,
-            bride_name: details.bride_name,
-            groom_name: details.groom_name,
-            wedding_date: details.wedding_date || null,
-            updated_at: new Date().toISOString(),
-          })
-          .select()
-          .single();
-      }
+      // Convert weddingDate to Timestamp if provided
+      const weddingTimestamp = details.weddingDate
+        ? Timestamp.fromDate(
+            typeof details.weddingDate === 'string'
+              ? new Date(details.weddingDate)
+              : details.weddingDate
+          )
+        : null;
 
-      const { data, error } = result;
-
-      if (error) {
-        console.error('Error saving wedding details:', error);
-        toast({
-          title: "Error",
-          description: "Failed to save wedding details",
-          variant: "destructive",
+      if (eventId) {
+        // Update existing event
+        const eventRef = doc(db, 'users', user.id, 'events', eventId);
+        await updateDoc(eventRef, {
+          brideName: details.brideName,
+          groomName: details.groomName,
+          weddingDate: weddingTimestamp,
+          updatedAt: serverTimestamp(),
         });
-        return false;
+      } else {
+        // Create new event
+        await addDoc(eventsRef, {
+          userId: user.id,
+          brideName: details.brideName,
+          groomName: details.groomName,
+          weddingDate: weddingTimestamp,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        });
       }
 
-      setWeddingDetails(data);
       toast({
-        title: "Success",
-        description: "Wedding details saved successfully",
+        title: "Succes",
+        description: "Detaliile nunții au fost salvate cu succes",
       });
       return true;
     } catch (error) {
       console.error('Error saving wedding details:', error);
       toast({
-        title: "Error",
-        description: "Failed to save wedding details",
+        title: "Eroare",
+        description: "Nu s-au putut salva detaliile nunții",
         variant: "destructive",
       });
       return false;
     }
   };
 
-  useEffect(() => {
-    fetchWeddingDetails();
-  }, [user]);
+  const refetch = () => {
+    // No need for manual refetch with real-time listeners
+    console.log('Real-time sync active - no manual refetch needed');
+  };
 
   return {
     weddingDetails,
     loading,
     saveWeddingDetails,
-    refetch: fetchWeddingDetails,
+    refetch,
   };
 };

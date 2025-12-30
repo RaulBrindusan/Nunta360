@@ -9,13 +9,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Heart } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/use-toast';
 
 const Signup = () => {
   const { t } = useLanguage();
   const router = useRouter();
   const { toast } = useToast();
+  const { signUp } = useAuth();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +28,7 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       toast({
         title: t('signup.error'),
@@ -49,31 +50,29 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-          },
-        },
-      });
+      // Split fullName into first and last name
+      const nameParts = fullName.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      // Sign up using Firebase Auth (automatically creates user profile in Firestore)
+      const { error } = await signUp(email, password, firstName, lastName);
 
       if (error) {
         throw error;
       }
 
-      if (data.user) {
-        toast({
-          title: t('signup.success'),
-          description: t('signup.checkEmail'),
-        });
-        router.push('/login');
-      }
+      toast({
+        title: t('signup.success'),
+        description: t('signup.accountCreated'),
+      });
+
+      // Redirect to dashboard after successful signup
+      router.push('/dashboard');
     } catch (error: any) {
       toast({
         title: t('signup.error'),
-        description: error.message,
+        description: error.message || 'An error occurred during signup',
         variant: 'destructive',
       });
     } finally {

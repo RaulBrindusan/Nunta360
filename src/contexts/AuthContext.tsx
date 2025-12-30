@@ -1,25 +1,29 @@
-<<<<<<< HEAD
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
-import { supabase } from '@/lib/supabase';
-
-type AuthContextType = {
-  user: User | null;
-  loading: boolean;
-};
-
-const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-=======
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
+import { User as FirebaseUser } from 'firebase/auth';
+import {
+  signUpWithEmail,
+  signInWithEmail,
+  signOut as firebaseSignOut,
+  onAuthStateChange,
+} from '@/lib/firebase-auth';
+
+// Simplified user type compatible with Firebase
+interface User {
+  id: string;
+  email: string | null;
+  user_metadata?: {
+    first_name?: string;
+    last_name?: string;
+  };
+}
+
+// Session type for compatibility
+interface Session {
+  user: User;
+  access_token: string;
+}
 
 interface AuthContextType {
   user: User | null;
@@ -35,81 +39,58 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
 
-<<<<<<< HEAD
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+// Convert Firebase user to our User type
+function convertFirebaseUser(firebaseUser: FirebaseUser | null): User | null {
+  if (!firebaseUser) return null;
 
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-=======
+  return {
+    id: firebaseUser.uid,
+    email: firebaseUser.email,
+    user_metadata: {
+      first_name: firebaseUser.displayName?.split(' ')[0],
+      last_name: firebaseUser.displayName?.split(' ').slice(1).join(' '),
+    },
+  };
+}
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set up auth state listener first
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log('Auth state changed:', event, session?.user?.email);
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
+    // Set up Firebase auth state listener
+    const unsubscribe = onAuthStateChange(async (firebaseUser) => {
+      console.log('Auth state changed:', firebaseUser?.email);
+
+      const convertedUser = convertFirebaseUser(firebaseUser);
+      setUser(convertedUser);
+
+      // Create session object if user exists
+      if (convertedUser && firebaseUser) {
+        const token = await firebaseUser.getIdToken();
+        setSession({
+          user: convertedUser,
+          access_token: token,
+        });
+      } else {
+        setSession(null);
       }
-    );
 
-    // Then check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
-      setUser(session?.user ?? null);
       setLoading(false);
     });
 
-<<<<<<< HEAD
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, loading }}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
-}; 
-=======
-    return () => subscription.unsubscribe();
+    return () => unsubscribe();
   }, []);
 
   const signUp = async (email: string, password: string, firstName?: string, lastName?: string) => {
     try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            first_name: firstName,
-            last_name: lastName,
-          },
-        },
-      });
+      const { error } = await signUpWithEmail(email, password, firstName, lastName);
       return { error };
     } catch (error) {
       return { error };
@@ -118,10 +99,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signIn = async (email: string, password: string) => {
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const { error } = await signInWithEmail(email, password);
       return { error };
     } catch (error) {
       return { error };
@@ -129,16 +107,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signOut = async () => {
-    // Clean up auth state
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
-        localStorage.removeItem(key);
-      }
-    });
-    
     try {
-      // Attempt global sign out
-      await supabase.auth.signOut({ scope: 'global' });
+      await firebaseSignOut();
     } catch (error) {
       console.error('Error during sign out:', error);
     }
@@ -155,4 +125,3 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca

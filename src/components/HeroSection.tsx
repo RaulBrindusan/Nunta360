@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 'use client';
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
-=======
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -29,11 +22,7 @@ const HeroSection = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-<<<<<<< HEAD
               <Link href="/login">
-=======
-              <Link to="/login">
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
                 <Button className="bg-blush-300 hover:bg-blush-400 text-charcoal font-semibold px-8 py-3 rounded-full text-lg transition-all duration-300 shadow-lg hover:shadow-xl">
                   {t('hero.startPlanning')}
                 </Button>

@@ -4,23 +4,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `npm run dev` - Start development server (port 8080)
+- `npm run dev` - Start development server (port 3000)
 - `npm run build` - Production build
-- `npm run build:dev` - Development build
+- `npm run start` - Start production server
 - `npm run lint` - Run ESLint linter
-- `npm run preview` - Preview production build locally
 
 ## Project Architecture
 
-**Nunta360** is a Romanian wedding planning application built with React, TypeScript, Vite, and Tailwind CSS. The application uses self-hosted Supabase for authentication and data management.
+**Nunta360** is a Romanian wedding planning application built with Next.js, React, TypeScript, and Tailwind CSS. The application uses self-hosted Supabase for authentication and data management.
 
 ### Core Technologies
-- **Frontend**: React 18 + TypeScript + Vite
+- **Framework**: Next.js 15 with App Router
+- **Frontend**: React 19 + TypeScript
 - **UI Framework**: shadcn/ui with Radix UI primitives
 - **Styling**: Tailwind CSS with custom wedding brand colors
-- **Authentication**: Supabase Auth
+- **Authentication**: Supabase Auth with SSR
 - **State Management**: React Context + TanStack Query
-- **Routing**: React Router DOM
+- **Canvas Graphics**: Konva.js for venue editor
 - **Forms**: React Hook Form with Zod validation
 - **Internationalization**: i18next (Romanian/English)
 
@@ -28,28 +28,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 src/
-├── components/           # Reusable UI components
-│   ├── ui/              # shadcn/ui components (generated)
-│   └── dashboard/       # Dashboard-specific components
-├── contexts/            # React contexts
-│   ├── AuthContext.tsx  # Authentication state management
+├── app/                 # Next.js App Router pages
+│   ├── dashboard/       # Protected dashboard routes
+│   │   ├── budget/page.tsx
+│   │   ├── guests/page.tsx
+│   │   ├── timeline/page.tsx
+│   │   ├── settings/page.tsx
+│   │   ├── venue/page.tsx    # Venue editor with Konva
+│   │   └── layout.tsx        # Dashboard layout
+│   ├── login/page.tsx
+│   ├── signup/page.tsx
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Landing page
+│   └── providers.tsx    # Client-side context providers
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components (generated)
+│   └── dashboard/      # Dashboard-specific components
+├── contexts/           # React contexts
+│   ├── AuthContext.tsx # Authentication state management
 │   └── LanguageContext.tsx # i18n with embedded translations
-├── hooks/               # Custom React hooks
-├── lib/                 # Utility libraries
-│   ├── supabase.ts      # Supabase client configuration
-│   └── utils.ts         # Utility functions
-├── pages/               # Page components
-├── utils/supabase/      # Supabase utilities
-└── App.tsx              # Main app with routing
+├── hooks/              # Custom React hooks
+├── lib/                # Utility libraries
+├── utils/supabase/     # Supabase SSR utilities
+└── middleware.ts       # Next.js middleware for auth
 ```
 
 ### Authentication Architecture
 
-The app uses a context-based authentication pattern:
+The app uses Next.js middleware + context authentication:
+- `middleware.ts` handles route protection and redirects
 - `AuthContext` provides global auth state (`user`, `loading`)
-- `ProtectedRoute` component wraps dashboard routes
-- Supabase client configured with environment variables
-- Self-hosted Supabase instance on `localhost:54321`
+- Dashboard routes protected at layout level
+- Supabase SSR client for server-side authentication
+- Self-hosted Supabase instance
 
 ### Routing Structure
 
@@ -61,6 +72,7 @@ The app uses a context-based authentication pattern:
   - `/dashboard/timeline` - Wedding timeline/calendar
   - `/dashboard/guests` - Guest management
   - `/dashboard/budget` - Budget tracking
+  - `/dashboard/venue` - Venue layout editor (Konva.js)
   - `/dashboard/settings` - User settings
 
 ### Internationalization
@@ -74,7 +86,7 @@ The app supports Romanian (default) and English via a custom i18next setup:
 
 Custom Tailwind configuration with wedding-themed colors:
 - Primary colors: `blush`, `dustyRose`, `sage`, `ivory`, `charcoal`
-- Font families: Inter (sans), Playfair Display (serif)
+- Font families: Inter (sans), Playfair Display (serif), Great Vibes (script), Cormorant Garamond (serif)
 - Uses CSS variables for theming
 - shadcn/ui components styled with custom color palette
 
@@ -90,6 +102,7 @@ Environment variables for self-hosted setup:
 - Components use TypeScript interfaces for props
 - Extensive use of shadcn/ui components
 - Custom hooks for common functionality (`useAuth`, `useSupabase`)
+- Canvas-based components using Konva.js for venue editing
 - Responsive design with mobile-first approach
 - Icon system using `lucide-react`
 
@@ -104,6 +117,6 @@ Environment variables for self-hosted setup:
 
 - ESLint configured with React hooks rules
 - TypeScript with strict configuration
-- Vite for fast development builds
-- Component auto-tagging in development (Lovable integration)
+- Next.js for optimized production builds
+- Server-side rendering and static generation support
 - Supports both npm and potentially Bun package managers

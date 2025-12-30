@@ -1,43 +1,42 @@
-
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export const useUserRole = () => {
   const { user } = useAuth();
   const [role, setRole] = useState<'admin' | 'user' | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Real-time listener for user role
   useEffect(() => {
-    const fetchUserRole = async () => {
-      if (!user) {
-        setRole(null);
-        setLoading(false);
-        return;
-      }
+    if (!user) {
+      setRole(null);
+      setLoading(false);
+      return;
+    }
 
-      try {
-        const { data, error } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', user.id)
-          .maybeSingle();
+    const userRef = doc(db, 'users', user.id);
 
-        if (error) {
-          console.error('Error fetching user role:', error);
-          setRole('user'); // Default to user role
+    const unsubscribe = onSnapshot(
+      userRef,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          setRole(userData?.role || 'user');
         } else {
-          setRole(data?.role || 'user');
+          setRole('user'); // Default to user role
         }
-      } catch (error) {
+        setLoading(false);
+      },
+      (error) => {
         console.error('Error fetching user role:', error);
         setRole('user'); // Default to user role
-      } finally {
         setLoading(false);
       }
-    };
+    );
 
-    fetchUserRole();
+    return () => unsubscribe();
   }, [user]);
 
   return { role, loading };

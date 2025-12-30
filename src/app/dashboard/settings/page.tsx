@@ -1,14 +1,15 @@
+'use client';
+
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Sidebar from '@/components/dashboard/Sidebar';
+import { useAuth } from '@/contexts/AuthContext';
+import { useWeddingDetails } from '@/hooks/useWeddingDetails';
+import DashboardLayout from '@/components/dashboard/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
-  Menu,
-  Bell,
-  Settings as SettingsIcon,
   User,
   Calendar,
   Globe,
@@ -20,22 +21,41 @@ import { Switch } from '@/components/ui/switch';
 
 const Settings = () => {
   const { t, language, setLanguage } = useLanguage();
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const { user } = useAuth();
+  const { weddingDetails, loading, saveWeddingDetails } = useWeddingDetails();
+  const [isSaving, setIsSaving] = React.useState(false);
 
   const [formData, setFormData] = React.useState({
-    brideFirstName: 'Maria',
-    brideLastName: 'Popescu',
-    groomFirstName: 'Alexandru',
-    groomLastName: 'Ionescu',
-    weddingDate: '2024-08-15',
-    email: 'maria.popescu@example.com',
-    phone: '+40 722 123 456',
+    brideName: '',
+    groomName: '',
+    weddingDate: '',
+    email: '',
+    phone: '',
     notifications: {
       email: true,
       push: true,
       reminders: true,
     },
   });
+
+  // Update form data when wedding details or user loads
+  React.useEffect(() => {
+    if (weddingDetails || user) {
+      // Convert Timestamp to date string for input
+      const dateString = weddingDetails?.weddingDate
+        ? weddingDetails.weddingDate.toDate().toISOString().split('T')[0]
+        : '';
+
+      setFormData(prev => ({
+        ...prev,
+        brideName: weddingDetails?.brideName || '',
+        groomName: weddingDetails?.groomName || '',
+        weddingDate: dateString,
+        email: user?.email || '',
+        phone: user?.user_metadata?.phone || '',
+      }));
+    }
+  }, [weddingDetails, user]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,42 +75,35 @@ const Settings = () => {
     }));
   };
 
+  const handleSave = async () => {
+    setIsSaving(true);
+
+    try {
+      // Save wedding details
+      if (formData.brideName && formData.groomName) {
+        await saveWeddingDetails({
+          brideName: formData.brideName,
+          groomName: formData.groomName,
+          weddingDate: formData.weddingDate || undefined,
+        });
+      }
+
+      // Note: Email and phone updates would need to be handled through Supabase auth
+      // which is beyond the scope of wedding details
+    } catch (error) {
+      console.error('Error saving settings:', error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-ivory flex flex-col lg:flex-row">
-      {/* Mobile Header */}
-      <header className="lg:hidden bg-white border-b border-blush-100 p-4 sticky top-0 z-50">
-        <div className="flex items-center justify-between">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsSidebarOpen(true)}
-            className="text-charcoal/70 hover:text-blush-400"
-          >
-            <Menu size={20} />
-          </Button>
-          <h1 className="text-2xl font-serif font-bold text-charcoal">
-            Nunta<span className="text-blush-400">360</span>
-          </h1>
-          <Button variant="ghost" size="sm" className="text-charcoal/70 hover:text-blush-400">
-            <Bell size={20} />
-          </Button>
-        </div>
-      </header>
-
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-
-      {/* Main Content */}
-      <div className="flex-1">
-        {/* Desktop Header */}
-        <header className="hidden lg:block bg-white border-b border-blush-100 p-4">
-          <div className="flex flex-col items-center justify-center text-center">
-            <p className="font-medium text-2xl text-charcoal mb-1">Maria & Alexandru</p>
-            <p className="text-charcoal/70">{t('dashboard.weddingDate')}: 15.08.2024</p>
-          </div>
-        </header>
-
-        {/* Settings Content */}
-        <main className="p-4 lg:p-6 bg-gradient-to-br from-ivory via-blush-50/20 to-sage-50/20">
+    <DashboardLayout>
+          {loading && (
+            <div className="text-center py-8">
+              <p className="text-charcoal/70">Se încarcă informațiile...</p>
+            </div>
+          )}
           {/* Profile Settings */}
           <Card className="border-blush-100 mb-6">
             <CardHeader>
@@ -102,42 +115,24 @@ const Settings = () => {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="brideFirstName">Prenume Mireasă</Label>
+                  <Label htmlFor="brideName">Mireasă</Label>
                   <Input
-                    id="brideFirstName"
-                    name="brideFirstName"
-                    value={formData.brideFirstName}
+                    id="brideName"
+                    name="brideName"
+                    value={formData.brideName}
                     onChange={handleInputChange}
+                    placeholder="Nume complet mireasă"
                     className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="brideLastName">Nume Mireasă</Label>
+                  <Label htmlFor="groomName">Mire</Label>
                   <Input
-                    id="brideLastName"
-                    name="brideLastName"
-                    value={formData.brideLastName}
+                    id="groomName"
+                    name="groomName"
+                    value={formData.groomName}
                     onChange={handleInputChange}
-                    className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="groomFirstName">Prenume Mire</Label>
-                  <Input
-                    id="groomFirstName"
-                    name="groomFirstName"
-                    value={formData.groomFirstName}
-                    onChange={handleInputChange}
-                    className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="groomLastName">Nume Mire</Label>
-                  <Input
-                    id="groomLastName"
-                    name="groomLastName"
-                    value={formData.groomLastName}
-                    onChange={handleInputChange}
+                    placeholder="Nume complet mire"
                     className="border-blush-200 focus:border-blush-400 focus:ring-blush-400/20"
                   />
                 </div>
@@ -272,6 +267,17 @@ const Settings = () => {
             </CardContent>
           </Card>
 
+          {/* Save Button */}
+          <div className="mb-6">
+            <Button 
+              onClick={handleSave}
+              disabled={isSaving || loading}
+              className="w-full bg-blush-400 hover:bg-blush-500 text-white"
+            >
+              {isSaving ? 'Se salvează...' : 'Salvează Modificările'}
+            </Button>
+          </div>
+
           {/* Account Actions */}
           <Card className="border-blush-100">
             <CardHeader>
@@ -291,9 +297,7 @@ const Settings = () => {
               </Button>
             </CardContent>
           </Card>
-        </main>
-      </div>
-    </div>
+    </DashboardLayout>
   );
 };
 

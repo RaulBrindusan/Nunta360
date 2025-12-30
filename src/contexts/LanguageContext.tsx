@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 'use client';
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
@@ -34,169 +31,105 @@ const translations = {
     'features.title': 'Tot ce ai nevoie pentru',
     'features.titleAccent': 'nunta perfectă',
     'features.subtitle': 'Organizează fiecare detaliu cu ușurință folosind instrumentele noastre intuitive',
-    'features.vendorDiscovery': 'Descoperirea Furnizorilor',
-    'features.vendorDescription': 'Găsește și conectează-te cu furnizori de nuntă de încredere din zona ta. De la fotografi la catering, descoperă echipa perfectă pentru ziua ta specială.',
-    'features.budgetPlanning': 'Planificarea Bugetului',
-    'features.budgetDescription': 'Ține evidența cheltuielilor de nuntă cu planificatorul nostru intuitiv de buget. Stabilește limite, monitorizează cheltuielile și rămâi pe drumul cel bun financiar.',
     'features.guestManagement': 'Gestionarea Invitaților',
-    'features.guestDescription': 'Gestionează cu ușurință lista de invitați, trimite invitații și urmărește confirmările într-un singur loc. Fă aranjamentele pentru locuri o plăcere.',
+    'features.guestDescription': 'Gestionează cu ușurință lista de invitați, trimite invitații și urmărește confirmările într-un singur loc.',
+    'features.budgetPlanning': 'Planificarea Bugetului',
+    'features.budgetDescription': 'Ține evidența cheltuielilor de nuntă cu planificatorul nostru intuitiv de buget. Stabilește limite și monitorizează cheltuielile.',
+    'features.vendorDiscovery': 'Descoperirea Furnizorilor',
+    'features.vendorDescription': 'Găsește și conectează-te cu furnizori de nuntă de încredere din zona ta. De la fotografi la catering.',
     'features.timelineSync': 'Sincronizarea Programului',
-    'features.timelineDescription': 'Coordonează fiecare detaliu cu funcția noastră inteligentă de cronologie. Sincronizează cu calendarul tău și nu rata niciodată o dată importantă.',
+    'features.timelineDescription': 'Coordonează fiecare detaliu cu funcția noastră inteligentă de cronologie. Nu rata niciodată o dată importantă.',
     
     // Showcase Section
     'showcase.title': 'De încredere pentru',
     'showcase.titleAccent': 'sute de cupluri românești',
     'showcase.subtitle': 'Alătură-te miilor de cupluri care și-au planificat nunta perfectă cu Nunta360',
     'showcase.testimonial1': 'Nunta360 ne-a făcut planificarea nunții mult mai ușoară! Am putut urmări totul într-un singur loc.',
-    'showcase.testimonial2': 'Funcția de descoperire a furnizorilor ne-a ajutat să găsim profesioniști locali minunați. Foarte recomandat!',
-    'showcase.testimonial3': 'Planificarea bugetului a fost foarte ușoară cu această aplicație. Am rămas în limitele bugetului și am avut nunta de vis.',
-    'showcase.stats.couples': 'Cupluri Fericite',
-    'showcase.stats.vendors': 'Furnizori',
-    'showcase.stats.cities': 'Orașe',
-    'showcase.stats.satisfaction': 'Satisfacție',
-    
-    // Product Preview
-    'product.title': 'Planifică, Personalizează, Sărbătorește',
-    'product.titleAccent': 'Totul într-o singură aplicație',
-    'product.subtitle': 'Aruncă o privire asupra modului în care Nunta360 simplifică fiecare aspect al călătoriei tale de planificare a nunții',
-    'product.guestList': 'Manager Listă Invitați',
-    'product.budgetTracker': 'Urmăritor Buget',
-    'product.vendorDirectory': 'Director Furnizori',
-    'product.timelinePlanner': 'Planificator Timeline',
-    'product.feature1.title': 'Gestionare Inteligentă a Invitaților',
-    'product.feature1.description': 'Organizează lista de invitați, urmărește confirmările și gestionează cerințele dietetice într-o interfață intuitivă.',
-    'product.feature2.title': 'Planificare Inteligentă a Bugetului',
-    'product.feature2.description': 'Stabilește bugete, urmărește cheltuielile și primește informații pentru a lua decizii în cunoștință de cauză.',
-    'product.feature3.title': 'Rețea Curată de Furnizori',
-    'product.feature3.description': 'Accesează rețeaua noastră verificată de profesioniști în nunți din România și citește recenzii autentice.',
-    
-    // CTA Banner
-    'cta.title': 'Gata să începi',
-    'cta.titleAccent': 'călătoria împreună?',
-    'cta.subtitle': 'Alătură-te miilor de cupluri care și-au planificat nunta perfectă cu Nunta360',
-    'cta.createAccount': 'Creează Contul Gratuit',
-    'cta.trial': 'Nu necesită card de credit • Încercare gratuită de 14 zile • Anulare oricând',
-    
-    // Footer
-    'footer.tagline': 'Platforma completă de planificare a nunții pentru cuplurile românești moderne.',
-    'footer.product': 'Produs',
-    'footer.support': 'Suport',
-    'footer.legal': 'Legal',
-    'footer.helpCenter': 'Centru de Ajutor',
-    'footer.contactUs': 'Contactează-ne',
-    'footer.weddingGuide': 'Ghid de Nuntă',
-    'footer.privacyPolicy': 'Politica de Confidențialitate',
-    'footer.termsOfService': 'Termenii de Serviciu',
-    'footer.cookiePolicy': 'Politica Cookie',
-    'footer.copyright': '© 2024 Nunta360. Toate drepturile rezervate. Făcut cu ❤️ în România.',
     
     // Login Page
-<<<<<<< HEAD
     'login.welcome': 'Bine ai revenit la Nunta360',
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.title': 'Bine ai venit înapoi',
     'login.subtitle': 'Conectează-te pentru a-ți continua planificarea nunții',
     'login.email': 'Email',
     'login.emailPlaceholder': 'nume@exemplu.com',
     'login.password': 'Parolă',
     'login.passwordPlaceholder': 'Introdu parola',
-<<<<<<< HEAD
     'login.rememberMe': 'Ține-mă minte',
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.signIn': 'Conectează-te',
+    'login.signingIn': 'Se conectează...',
     'login.forgotPassword': 'Ai uitat parola?',
     'login.noAccount': 'Nu ai cont?',
     'login.signUp': 'Înregistrează-te',
-    'login.orContinueWith': 'Sau continuă cu',
-    'login.google': 'Google',
-    'login.facebook': 'Facebook',
-<<<<<<< HEAD
     'login.backToHome': 'Înapoi la pagina principală',
+    'login.success': 'Conectare reușită',
+    'login.welcomeBack': 'Bine ai revenit!',
+    'login.error': 'Eroare la conectare',
+    
     // Signup Page
     'signup.welcome': 'Bun venit la Nunta360',
-    'signup.title': 'Creează-ți contul',
-    'signup.subtitle': 'Începe să-ți planifici nunta de vis',
+    'signup.title': 'Creează un cont nou',
+    'signup.subtitle': 'Începe să-ți planifici nunta perfectă astăzi',
     'signup.fullName': 'Nume complet',
-    'signup.fullNamePlaceholder': 'Numele și prenumele',
+    'signup.fullNamePlaceholder': 'Nume și prenume',
     'signup.email': 'Email',
     'signup.emailPlaceholder': 'nume@exemplu.com',
     'signup.password': 'Parolă',
-    'signup.passwordPlaceholder': 'Minim 8 caractere',
+    'signup.passwordPlaceholder': 'Creează o parolă sigură',
     'signup.confirmPassword': 'Confirmă parola',
-    'signup.confirmPasswordPlaceholder': 'Introdu parola din nou',
-    'signup.termsAgree': 'Sunt de acord cu',
+    'signup.confirmPasswordPlaceholder': 'Introdu din nou parola',
+    'signup.createAccount': 'Creează contul',
+    'signup.creating': 'Se creează...',
+    'signup.alreadyHaveAccount': 'Ai deja cont?',
+    'signup.signIn': 'Conectează-te',
+    'signup.backToHome': 'Înapoi la pagina principală',
+    'signup.termsAgree': 'Accept',
     'signup.terms': 'Termenii și Condițiile',
     'signup.and': 'și',
     'signup.privacy': 'Politica de Confidențialitate',
-    'signup.createAccount': 'Creează Cont',
-    'signup.alreadyHaveAccount': 'Ai deja un cont?',
-    'signup.signIn': 'Conectează-te',
-    'signup.orContinueWith': 'Sau continuă cu',
-    'signup.backToHome': 'Înapoi la pagina principală',
-    // Dashboard
-    'dashboard.overview': 'Prezentare Generală',
-    'dashboard.timeline': 'Calendar',
-    'dashboard.guests': 'Invitați',
-    'dashboard.budget': 'Buget',
-    'dashboard.settings': 'Setări',
-    'dashboard.logout': 'Deconectare',
-    'dashboard.notifications': 'Notificări',
-    'dashboard.daysLeft': 'Zile Rămase',
-    'dashboard.guestList': 'Lista Invitați',
-    'dashboard.budgetUsed': 'Buget Folosit',
-    'dashboard.tasksDone': 'Sarcini Finalizate',
-    'dashboard.planningProgress': 'Progres Planificare',
-    'dashboard.upcomingTasks': 'Sarcini Următoare',
-    'dashboard.venue': 'Locație & Catering',
-    'dashboard.decorations': 'Decorațiuni',
-    'dashboard.music': 'Muzică & Entertainment',
-    'dashboard.weddingDate': 'Data Nunții',
-=======
+    'signup.success': 'Cont creat cu succes',
+    'signup.checkEmail': 'Verifică-ți email-ul pentru confirmarea contului',
+    'signup.error': 'Eroare la crearea contului',
+    'signup.passwordMismatch': 'Parolele nu se potrivesc',
+    'signup.agreeToTerms': 'Trebuie să accepți termenii și condițiile',
     
     // Dashboard
     'dashboard.welcome': 'Bun venit',
-    'dashboard.user': 'utilizator',
-    'dashboard.welcomeSubtitle': 'Gestionează și planifică fiecare detaliu al nunții tale perfecte',
-    'dashboard.weddingDetails': 'Detalii Nuntă',
+    'dashboard.overview': 'Panou',
+    'dashboard.timeline': 'Cronologie',
     'dashboard.guests': 'Invitați',
-    'dashboard.countdown': 'Numărătoare Inversă',
-    'dashboard.signOut': 'Deconectare',
-    'dashboard.totalGuests': 'Total Invitați',
-    'dashboard.addGuest': 'Adaugă Invitat',
-    'dashboard.daysRemaining': 'Zile Rămase',
-    'dashboard.noWeddingDate': 'Nu s-a stabilit data nunții',
-    'dashboard.addDetails': 'Adaugă Detalii',
-    'dashboard.noWeddingDetails': 'Nu există încă detalii despre nuntă',
-    
-    // Wedding Details Form
-    'weddingForm.welcome': 'Bun venit la Nunta360!',
-    'weddingForm.subtitle': 'Să începem prin a colecta câteva informații de bază despre ziua ta specială',
-    'weddingForm.brideName': 'Numele Miresei *',
-    'weddingForm.brideNamePlaceholder': 'Introdu numele miresei',
-    'weddingForm.groomName': 'Numele Mirelui *',
-    'weddingForm.groomNamePlaceholder': 'Introdu numele mirelui',
-    'weddingForm.weddingDate': 'Data Nunții (Opțional)',
-    'weddingForm.saveDetails': 'Salvează Detaliile',
-    'weddingForm.skipForNow': 'Sari pentru acum',
-    'weddingForm.saving': 'Se salvează...',
-    'weddingForm.requiredFieldsMissing': 'Câmpuri obligatorii lipsesc',
-    'weddingForm.enterBothNames': 'Te rog să introduci ambele nume ale miresei și mirelui',
+    'dashboard.venue': 'Locație',
+    'dashboard.budget': 'Buget',
+    'dashboard.settings': 'Setări',
+    'dashboard.weddingDate': 'Data nunții',
     
     // Guest Form
-    'guestForm.title': 'Adaugă Invitat Nou',
-    'guestForm.subtitle': 'Introdu detaliile invitatului pentru a-l adăuga la lista ta',
-    'guestForm.guestName': 'Numele Invitatului *',
-    'guestForm.guestNamePlaceholder': 'Introdu numele complet',
-    'guestForm.phoneNumber': 'Numărul de Telefon (Opțional)',
-    'guestForm.phoneNumberPlaceholder': 'ex: +40 123 456 789',
+    'guestForm.title': 'Adaugă Invitat',
+    'guestForm.subtitle': 'Introdu detaliile invitatului pentru a-l adăuga la listă',
+    'guestForm.guestName': 'Nume invitat',
+    'guestForm.guestNamePlaceholder': 'Ex: Maria Popescu sau Familia Ionescu',
+    'guestForm.phoneNumber': 'Număr de telefon',
+    'guestForm.phoneNumberPlaceholder': 'Ex: +40 722 123 456',
+    'guestForm.isFamily': 'Vine cu familia',
+    'guestForm.familySize': 'Numărul de persoane din familie',
     'guestForm.addGuest': 'Adaugă Invitat',
     'guestForm.cancel': 'Anulează',
     'guestForm.adding': 'Se adaugă...',
-    'guestForm.nameRequired': 'Numele este obligatoriu',
-    'guestForm.enterGuestName': 'Te rog să introduci numele invitatului'
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
+    'guestForm.nameRequired': 'Nume necesar',
+    'guestForm.enterGuestName': 'Te rog să introduci numele invitatului',
+    'guestForm.status': 'Status',
+    'guestForm.menuPreference': 'Preferințe meniu',
+    
+    // Guest Status
+    'guest.status.in_asteptare': 'În așteptare',
+    'guest.status.confirmat': 'Confirmat',
+    'guest.status.refuzat': 'Refuzat',
+    
+    // Menu Preferences
+    'menu.normal': 'Normal',
+    'menu.vegetarian': 'Vegetarian',
+    'menu.vegan': 'Vegan',
+    'menu.fara_gluten': 'Fără gluten',
+    'menu.alte_alergii': 'Alte alergii'
   },
   en: {
     // Header
@@ -215,193 +148,118 @@ const translations = {
     'hero.exploreFeatures': 'Explore Features',
     
     // Features Section
-    'features.title': 'Everything you need for your',
-    'features.titleAccent': 'perfect wedding',
+    'features.title': 'Everything you need for',
+    'features.titleAccent': 'the perfect wedding',
     'features.subtitle': 'Organize every detail with ease using our intuitive tools',
-    'features.vendorDiscovery': 'Vendor Discovery',
-    'features.vendorDescription': 'Find and connect with trusted Romanian wedding vendors in your area. From photographers to caterers, discover the perfect team for your special day.',
-    'features.budgetPlanning': 'Budget Planning',
-    'features.budgetDescription': 'Keep track of your wedding expenses with our intuitive budget planner. Set limits, monitor spending, and stay on track financially.',
     'features.guestManagement': 'Guest Management',
-    'features.guestDescription': 'Easily manage your guest list, send invitations, and track RSVPs all in one place. Make seating arrangements a breeze.',
+    'features.guestDescription': 'Easily manage your guest list, send invitations and track confirmations in one place.',
+    'features.budgetPlanning': 'Budget Planning',
+    'features.budgetDescription': 'Keep track of wedding expenses with our intuitive budget planner. Set limits and monitor spending.',
+    'features.vendorDiscovery': 'Vendor Discovery',
+    'features.vendorDescription': 'Find and connect with trusted wedding vendors in your area. From photographers to catering.',
     'features.timelineSync': 'Timeline Sync',
-    'features.timelineDescription': 'Coordinate every detail with our smart timeline feature. Sync with your calendar and never miss an important deadline.',
+    'features.timelineDescription': 'Coordinate every detail with our smart timeline feature. Never miss an important date.',
     
     // Showcase Section
-    'showcase.title': 'Trusted by hundreds of',
-    'showcase.titleAccent': 'Romanian couples',
+    'showcase.title': 'Trusted by',
+    'showcase.titleAccent': 'hundreds of Romanian couples',
     'showcase.subtitle': 'Join thousands of couples who planned their perfect wedding with Nunta360',
-    'showcase.testimonial1': 'Nunta360 made our wedding planning so much easier! We could track everything in one place.',
-    'showcase.testimonial2': 'The vendor discovery feature helped us find amazing local professionals. Highly recommended!',
-    'showcase.testimonial3': 'Budget planning was a breeze with this app. We stayed within our budget and had our dream wedding.',
-    'showcase.stats.couples': 'Happy Couples',
-    'showcase.stats.vendors': 'Vendors',
-    'showcase.stats.cities': 'Cities',
-    'showcase.stats.satisfaction': 'Satisfaction',
-    
-    // Product Preview
-    'product.title': 'Plan, Customize, Celebrate',
-    'product.titleAccent': 'All in One App',
-    'product.subtitle': 'Get a glimpse of how Nunta360 simplifies every aspect of your wedding planning journey',
-    'product.guestList': 'Guest List Manager',
-    'product.budgetTracker': 'Budget Tracker',
-    'product.vendorDirectory': 'Vendor Directory',
-    'product.timelinePlanner': 'Timeline Planner',
-    'product.feature1.title': 'Smart Guest Management',
-    'product.feature1.description': 'Organize your guest list, track RSVPs, and manage dietary requirements all in one intuitive interface.',
-    'product.feature2.title': 'Intelligent Budget Planning',
-    'product.feature2.description': 'Set budgets, track expenses, and get insights to help you make informed decisions about your wedding spending.',
-    'product.feature3.title': 'Curated Vendor Network',
-    'product.feature3.description': 'Access our vetted network of Romanian wedding professionals and read authentic reviews from other couples.',
-    
-    // CTA Banner
-    'cta.title': 'Ready to start your',
-    'cta.titleAccent': 'journey together?',
-    'cta.subtitle': 'Join thousands of couples who planned their perfect wedding with Nunta360',
-    'cta.createAccount': 'Create Your Free Account',
-    'cta.trial': 'No credit card required • 14-day free trial • Cancel anytime',
-    
-    // Footer
-    'footer.tagline': 'The complete wedding planning platform for modern Romanian couples.',
-    'footer.product': 'Product',
-    'footer.support': 'Support',
-    'footer.legal': 'Legal',
-    'footer.helpCenter': 'Help Center',
-    'footer.contactUs': 'Contact Us',
-    'footer.weddingGuide': 'Wedding Guide',
-    'footer.privacyPolicy': 'Privacy Policy',
-    'footer.termsOfService': 'Terms of Service',
-    'footer.cookiePolicy': 'Cookie Policy',
-    'footer.copyright': '© 2024 Nunta360. All rights reserved.',
+    'showcase.testimonial1': 'Nunta360 made wedding planning so much easier! We could track everything in one place.',
     
     // Login Page
-<<<<<<< HEAD
     'login.welcome': 'Welcome back to Nunta360',
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.title': 'Welcome back',
     'login.subtitle': 'Sign in to continue planning your perfect wedding',
     'login.email': 'Email',
     'login.emailPlaceholder': 'name@example.com',
     'login.password': 'Password',
     'login.passwordPlaceholder': 'Enter your password',
-<<<<<<< HEAD
     'login.rememberMe': 'Remember me',
-=======
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
     'login.signIn': 'Sign In',
+    'login.signingIn': 'Signing in...',
     'login.forgotPassword': 'Forgot password?',
     'login.noAccount': "Don't have an account?",
-    'login.signUp': 'Sign up',
-    'login.orContinueWith': 'Or continue with',
-    'login.google': 'Google',
-    'login.facebook': 'Facebook',
-<<<<<<< HEAD
+    'login.signUp': 'Sign Up',
     'login.backToHome': 'Back to home',
+    'login.success': 'Sign in successful',
+    'login.welcomeBack': 'Welcome back!',
+    'login.error': 'Sign in error',
+    
     // Signup Page
     'signup.welcome': 'Welcome to Nunta360',
-    'signup.title': 'Create your account',
-    'signup.subtitle': 'Start planning your dream wedding',
-    'signup.fullName': 'Full name',
+    'signup.title': 'Create a new account',
+    'signup.subtitle': 'Start planning your perfect wedding today',
+    'signup.fullName': 'Full Name',
     'signup.fullNamePlaceholder': 'First and last name',
     'signup.email': 'Email',
     'signup.emailPlaceholder': 'name@example.com',
     'signup.password': 'Password',
-    'signup.passwordPlaceholder': 'Minimum 8 characters',
-    'signup.confirmPassword': 'Confirm password',
+    'signup.passwordPlaceholder': 'Create a secure password',
+    'signup.confirmPassword': 'Confirm Password',
     'signup.confirmPasswordPlaceholder': 'Enter password again',
+    'signup.createAccount': 'Create Account',
+    'signup.creating': 'Creating...',
+    'signup.alreadyHaveAccount': 'Already have an account?',
+    'signup.signIn': 'Sign In',
+    'signup.backToHome': 'Back to home',
     'signup.termsAgree': 'I agree to the',
     'signup.terms': 'Terms and Conditions',
     'signup.and': 'and',
     'signup.privacy': 'Privacy Policy',
-    'signup.createAccount': 'Create Account',
-    'signup.alreadyHaveAccount': 'Already have an account?',
-    'signup.signIn': 'Sign in',
-    'signup.orContinueWith': 'Or continue with',
-    'signup.backToHome': 'Back to home',
-    // Dashboard
-    'dashboard.overview': 'Overview',
-    'dashboard.timeline': 'Timeline',
-    'dashboard.guests': 'Guests',
-    'dashboard.budget': 'Budget',
-    'dashboard.settings': 'Settings',
-    'dashboard.logout': 'Logout',
-    'dashboard.notifications': 'Notifications',
-    'dashboard.daysLeft': 'Days Left',
-    'dashboard.guestList': 'Guest List',
-    'dashboard.budgetUsed': 'Budget Used',
-    'dashboard.tasksDone': 'Tasks Done',
-    'dashboard.planningProgress': 'Planning Progress',
-    'dashboard.upcomingTasks': 'Upcoming Tasks',
-    'dashboard.venue': 'Venue & Catering',
-    'dashboard.decorations': 'Decorations',
-    'dashboard.music': 'Music & Entertainment',
-    'dashboard.weddingDate': 'Wedding Date',
-=======
+    'signup.success': 'Account created successfully',
+    'signup.checkEmail': 'Check your email to confirm your account',
+    'signup.error': 'Account creation error',
+    'signup.passwordMismatch': 'Passwords do not match',
+    'signup.agreeToTerms': 'You must agree to the terms and conditions',
     
     // Dashboard
     'dashboard.welcome': 'Welcome',
-    'dashboard.user': 'user',
-    'dashboard.welcomeSubtitle': 'Manage and plan every detail of your perfect wedding',
-    'dashboard.weddingDetails': 'Wedding Details',
+    'dashboard.overview': 'Dashboard',
+    'dashboard.timeline': 'Timeline',
     'dashboard.guests': 'Guests',
-    'dashboard.countdown': 'Countdown',
-    'dashboard.signOut': 'Sign Out',
-    'dashboard.totalGuests': 'Total Guests',
-    'dashboard.addGuest': 'Add Guest',
-    'dashboard.daysRemaining': 'Days Remaining',
-    'dashboard.noWeddingDate': 'No wedding date set',
-    'dashboard.addDetails': 'Add Details',
-    'dashboard.noWeddingDetails': 'No wedding details yet',
-    
-    // Wedding Details Form
-    'weddingForm.welcome': 'Welcome to Nunta360!',
-    'weddingForm.subtitle': "Let's start by collecting some basic information about your special day",
-    'weddingForm.brideName': "Bride's Name *",
-    'weddingForm.brideNamePlaceholder': "Enter bride's name",
-    'weddingForm.groomName': "Groom's Name *",
-    'weddingForm.groomNamePlaceholder': "Enter groom's name",
-    'weddingForm.weddingDate': 'Wedding Date (Optional)',
-    'weddingForm.saveDetails': 'Save Details',
-    'weddingForm.skipForNow': 'Skip for now',
-    'weddingForm.saving': 'Saving...',
-    'weddingForm.requiredFieldsMissing': 'Required fields missing',
-    'weddingForm.enterBothNames': 'Please enter both bride and groom names',
+    'dashboard.venue': 'Venue',
+    'dashboard.budget': 'Budget',
+    'dashboard.settings': 'Settings',
+    'dashboard.weddingDate': 'Wedding date',
     
     // Guest Form
-    'guestForm.title': 'Add New Guest',
+    'guestForm.title': 'Add Guest',
     'guestForm.subtitle': 'Enter guest details to add them to your list',
-    'guestForm.guestName': 'Guest Name *',
-    'guestForm.guestNamePlaceholder': 'Enter full name',
-    'guestForm.phoneNumber': 'Phone Number (Optional)',
-    'guestForm.phoneNumberPlaceholder': 'e.g. +40 123 456 789',
+    'guestForm.guestName': 'Guest name',
+    'guestForm.guestNamePlaceholder': 'Ex: Maria Popescu or The Ionescu Family',
+    'guestForm.phoneNumber': 'Phone number',
+    'guestForm.phoneNumberPlaceholder': 'Ex: +40 722 123 456',
+    'guestForm.isFamily': 'Coming with family',
+    'guestForm.familySize': 'Number of family members',
     'guestForm.addGuest': 'Add Guest',
     'guestForm.cancel': 'Cancel',
     'guestForm.adding': 'Adding...',
-    'guestForm.nameRequired': 'Name is required',
-    'guestForm.enterGuestName': 'Please enter guest name'
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
+    'guestForm.nameRequired': 'Name required',
+    'guestForm.enterGuestName': 'Please enter the guest name',
+    'guestForm.status': 'Status',
+    'guestForm.menuPreference': 'Menu preference',
+    
+    // Guest Status
+    'guest.status.in_asteptare': 'Pending',
+    'guest.status.confirmat': 'Confirmed',
+    'guest.status.refuzat': 'Declined',
+    
+    // Menu Preferences
+    'menu.normal': 'Normal',
+    'menu.vegetarian': 'Vegetarian',
+    'menu.vegan': 'Vegan',
+    'menu.fara_gluten': 'Gluten-free',
+    'menu.alte_alergii': 'Other allergies'
   }
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-<<<<<<< HEAD
-  const [language, setLanguage] = React.useState<'en' | 'ro'>('ro');
-
-  const t = (key: string): string => {
-    return translations[language][key] || key;
-=======
   const [language, setLanguage] = useState<Language>('ro');
 
   const t = (key: string): string => {
-    // Direct lookup in translations object
-    const translation = translations[language][key];
-    
-    // Return the translation if found, otherwise return the key
-    return translation || key;
->>>>>>> c493688bf11b8df40335dff740eeed20607864ca
+    return translations[language][key] || key;
   };
 
   return (
