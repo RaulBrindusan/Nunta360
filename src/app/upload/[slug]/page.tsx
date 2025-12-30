@@ -483,15 +483,6 @@ const UploadPage = () => {
             </div>
           </div>
         )}
-
-        {/* Info Card */}
-        <Card className="mt-8 bg-sage-50 border-sage-200">
-          <CardContent className="p-4">
-            <p className="text-sm text-charcoal/70">
-              <strong>Informații:</strong> Pozele și videoclipurile tale vor fi partajate cu cuplul pentru amintiri de neuitat. Mulțumim că participi!
-            </p>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Welcome Info Popup - Shows only on first visit */}
@@ -520,7 +511,7 @@ const UploadPage = () => {
               </div>
             </DialogDescription>
           </DialogHeader>
-          <div className="flex justify-end pt-4">
+          <div className="flex justify-center pt-4">
             <Button
               onClick={() => setShowInfoPopup(false)}
               className="bg-blush-500 hover:bg-blush-600"
