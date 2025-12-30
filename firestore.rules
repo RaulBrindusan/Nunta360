@@ -132,10 +132,9 @@ service cloud.firestore {
       // Anyone can create (guests upload files)
       allow create: if isValidUploadedFile();
 
-      // Only page owner can read uploaded files
-      allow read: if request.auth != null
-                  && exists(/databases/$(database)/documents/qr_pages/$(resource.data.pageId))
-                  && get(/databases/$(database)/documents/qr_pages/$(resource.data.pageId)).data.userId == request.auth.uid;
+      // Anyone can read (guests need to see the gallery)
+      // Files are already public in R2, slug is random 16-char string
+      allow read: if true;
 
       // Only page owner can delete uploaded files
       allow delete: if request.auth != null
