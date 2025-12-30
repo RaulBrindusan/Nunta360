@@ -52,7 +52,7 @@ const Settings = () => {
         groomName: weddingDetails?.groomName || '',
         weddingDate: dateString,
         email: user?.email || '',
-        phone: user?.user_metadata?.phone || '',
+        phone: (user?.user_metadata as any)?.phone || '',
       }));
     }
   }, [weddingDetails, user]);
