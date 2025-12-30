@@ -24,7 +24,7 @@ const GuestForm: React.FC<GuestFormProps> = ({ onSuccess, onCancel }) => {
   const [isFamily, setIsFamily] = useState(false);
   const [familySize, setFamilySize] = useState(2);
   const [status, setStatus] = useState<'in_asteptare' | 'confirmat' | 'refuzat'>('in_asteptare');
-  const [menuPreference, setMenuPreference] = useState('normal');
+  const [menuPreference, setMenuPreference] = useState<'normal' | 'vegetarian' | 'vegan' | 'fara_gluten' | 'alte_alergii'>('normal');
   const [familyMembers, setFamilyMembers] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
