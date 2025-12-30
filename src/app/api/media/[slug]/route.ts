@@ -4,10 +4,10 @@ import { r2Client, R2_BUCKET_NAME, R2_PUBLIC_URL } from '@/lib/r2';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const slug = params.slug;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(
