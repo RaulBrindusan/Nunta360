@@ -43,6 +43,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const files = listResponse.Contents;
+
     // Create a zip archive
     const archive = archiver('zip', {
       zlib: { level: 9 } // Maximum compression
@@ -65,7 +67,7 @@ export async function GET(request: NextRequest) {
 
         // Add all files to the archive
         Promise.all(
-          listResponse.Contents.map(async (object) => {
+          files.map(async (object) => {
             if (!object.Key) return;
 
             const getCommand = new GetObjectCommand({

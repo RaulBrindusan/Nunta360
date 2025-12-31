@@ -2,5 +2,6 @@
   "/api/media/[slug]/route": "app/api/media/[slug]/route.js",
   "/page": "app/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/media/page": "app/dashboard/media/page.js"
+  "/dashboard/media/page": "app/dashboard/media/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js"
 }
