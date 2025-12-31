@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Menu, LogOut, User } from 'lucide-react';
+import { Menu, LogOut, User, Loader2 } from 'lucide-react';
 import Sidebar from './Sidebar';
 import {
   AlertDialog,
@@ -34,10 +34,17 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   headerLeft
 }) => {
   const { t } = useLanguage();
-  const { user, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = React.useState(false);
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login');
+    }
+  }, [user, loading, router]);
 
   const handleLogoutClick = () => {
     setShowLogoutDialog(true);
@@ -52,6 +59,23 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     }
     setShowLogoutDialog(false);
   };
+
+  // Show loading state while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-ivory flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-12 h-12 text-blush-500 animate-spin mx-auto" />
+          <p className="text-charcoal/60">Se încarcă...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render content if no user (will redirect)
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-ivory flex flex-col lg:flex-row">

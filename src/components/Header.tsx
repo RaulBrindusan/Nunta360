@@ -60,7 +60,7 @@ const Header = () => {
                     className="border-blush-300 text-charcoal hover:bg-blush-50"
                   >
                     <User className="w-4 h-4 mr-2" />
-                    Dashboard
+                    Panou
                   </Button>
                 </Link>
                 <Button
@@ -68,7 +68,7 @@ const Header = () => {
                   variant="ghost"
                   className="text-charcoal hover:text-blush-400"
                 >
-                  Sign Out
+                  Deconectare
                 </Button>
               </>
             ) : (
@@ -115,14 +115,14 @@ const Header = () => {
               {user ? (
                 <>
                   <Link href="/dashboard" className="block text-charcoal hover:text-blush-400 font-medium py-2">
-                    Dashboard
+                    Panou
                   </Link>
                   <Button
                     onClick={handleSignOut}
                     variant="ghost"
                     className="w-full text-left justify-start text-charcoal hover:text-blush-400"
                   >
-                    Sign Out
+                    Deconectare
                   </Button>
                 </>
               ) : (

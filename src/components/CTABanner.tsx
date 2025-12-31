@@ -39,10 +39,10 @@ const CTABanner = () => {
             </Link>
             
             <Link href="/login">
-              <Button 
+              <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-ivory text-ivory hover:bg-ivory hover:text-charcoal font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300"
+                className="border-2 border-ivory bg-white/10 backdrop-blur-sm text-charcoal hover:bg-ivory hover:text-charcoal font-semibold px-8 py-4 rounded-full text-lg transition-all duration-300"
               >
                 Am deja cont
               </Button>
