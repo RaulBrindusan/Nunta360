@@ -112,40 +112,75 @@ const QRCodePage = () => {
   };
 
   const handleDownload = () => {
-    if (!qrRef.current) return;
+    // Create a temporary container for high-res QR code
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.left = '-9999px';
 
-    const svg = qrRef.current.querySelector('svg');
-    if (!svg) return;
+    const tempQrDiv = document.createElement('div');
+    tempContainer.appendChild(tempQrDiv);
+    document.body.appendChild(tempContainer);
 
-    const svgData = new XMLSerializer().serializeToString(svg);
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
+    // Create a temporary React root to render high-res QR code
+    const highResSize = 2000; // 2000x2000 for print quality
 
-    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(svgBlob);
+    // Dynamically import and render QR code
+    import('react-dom/client').then(({ createRoot }) => {
+      const root = createRoot(tempQrDiv);
+      root.render(
+        React.createElement(QRCode, {
+          value: generatedUrl,
+          size: highResSize,
+          level: 'H',
+          bgColor: '#ffffff',
+          fgColor: '#000000'
+        })
+      );
 
-    img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx?.drawImage(img, 0, 0);
-      URL.revokeObjectURL(url);
-
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const downloadUrl = URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = downloadUrl;
-          link.download = 'nunta360-qr-code.png';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(downloadUrl);
+      // Wait for rendering to complete
+      setTimeout(() => {
+        const svg = tempQrDiv.querySelector('svg');
+        if (!svg) {
+          root.unmount();
+          document.body.removeChild(tempContainer);
+          return;
         }
-      });
-    };
 
-    img.src = url;
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+
+        const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(svgBlob);
+
+        img.onload = () => {
+          canvas.width = highResSize;
+          canvas.height = highResSize;
+          ctx?.drawImage(img, 0, 0);
+          URL.revokeObjectURL(url);
+
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const downloadUrl = URL.createObjectURL(blob);
+              const link = document.createElement('a');
+              link.href = downloadUrl;
+              link.download = 'nunta360-qr-code-high-res.png';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(downloadUrl);
+            }
+
+            // Cleanup
+            root.unmount();
+            document.body.removeChild(tempContainer);
+          });
+        };
+
+        img.src = url;
+      }, 100);
+    });
   };
 
   const getExpiryDate = () => {
