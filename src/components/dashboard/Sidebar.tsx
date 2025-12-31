@@ -16,6 +16,7 @@ import {
   BarChart3,
   MapPin,
   QrCode,
+  Image,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -53,6 +54,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       icon: QrCode,
       label: t('dashboard.qrCode'),
       path: '/dashboard/qr'
+    },
+    {
+      icon: Image,
+      label: t('dashboard.media'),
+      path: '/dashboard/media'
     },
     {
       icon: Settings,

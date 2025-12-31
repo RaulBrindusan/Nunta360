@@ -1,0 +1,126 @@
+[debug] [2025-12-31T10:45:15.519Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:15.521Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:15.521Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:15.521Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:15.522Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.522Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.523Z] > refreshing access token with scopes: []
+[debug] [2025-12-31T10:45:15.524Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-31T10:45:15.524Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.545Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.545Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.545Z] > refreshing access token with scopes: []
+[debug] [2025-12-31T10:45:15.545Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-31T10:45:15.545Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.546Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:15.546Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:15.546Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.546Z] Checked if tokens are valid: false, expires at: 1767136781295
+[debug] [2025-12-31T10:45:15.547Z] > refreshing access token with scopes: []
+[debug] [2025-12-31T10:45:15.547Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-31T10:45:15.547Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.649Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-31T10:45:15.649Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.658Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo [none]
+[debug] [2025-12-31T10:45:15.674Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-31T10:45:15.674Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.682Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo [none]
+[debug] [2025-12-31T10:45:15.685Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-31T10:45:15.685Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-31T10:45:15.693Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo [none]
+[debug] [2025-12-31T10:45:15.977Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo 200
+[debug] [2025-12-31T10:45:15.977Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo {"name":"projects/nunta360-e2f0e/billingInfo","projectId":"nunta360-e2f0e","billingAccountName":"","billingEnabled":false}
+[debug] [2025-12-31T10:45:16.060Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.060Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.061Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.061Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.068Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.068Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.068Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.068Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.068Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.068Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.069Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.069Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.070Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.070Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.071Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [none]
+[debug] [2025-12-31T10:45:16.071Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.123Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo 200
+[debug] [2025-12-31T10:45:16.124Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo {"name":"projects/nunta360-e2f0e/billingInfo","projectId":"nunta360-e2f0e","billingAccountName":"","billingEnabled":false}
+[debug] [2025-12-31T10:45:16.131Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.131Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.132Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.132Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.134Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.134Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.134Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.134Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.134Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.134Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.135Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.135Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.135Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.135Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.136Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [none]
+[debug] [2025-12-31T10:45:16.136Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.465Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo 200
+[debug] [2025-12-31T10:45:16.465Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo {"name":"projects/nunta360-e2f0e/billingInfo","projectId":"nunta360-e2f0e","billingAccountName":"","billingEnabled":false}
+[debug] [2025-12-31T10:45:16.470Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.470Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.470Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.470Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.473Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.473Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.473Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.473Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:16.473Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.473Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.474Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.474Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.474Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-12-31T10:45:16.474Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:16.475Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [none]
+[debug] [2025-12-31T10:45:16.475Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com x-goog-quota-user=projects/nunta360-e2f0e
+[debug] [2025-12-31T10:45:17.016Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com 403
+[debug] [2025-12-31T10:45:17.016Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [omitted]
+[debug] [2025-12-31T10:45:17.083Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com 403
+[debug] [2025-12-31T10:45:17.083Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [omitted]
+[debug] [2025-12-31T10:45:17.088Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-12-31T10:45:17.088Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.092Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-12-31T10:45:17.092Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.102Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-12-31T10:45:17.102Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.116Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-31T10:45:17.116Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.132Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:17.132Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:17.132Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:17.132Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:17.132Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo [none]
+[debug] [2025-12-31T10:45:17.134Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-12-31T10:45:17.134Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.170Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-31T10:45:17.170Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.327Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com 403
+[debug] [2025-12-31T10:45:17.327Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseio.com [omitted]
+[debug] [2025-12-31T10:45:17.338Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo 200
+[debug] [2025-12-31T10:45:17.338Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo {"name":"projects/nunta360-e2f0e/billingInfo","projectId":"nunta360-e2f0e","billingAccountName":"","billingEnabled":false}
+[debug] [2025-12-31T10:45:17.348Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:17.348Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:17.411Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-12-31T10:45:17.411Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.419Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-12-31T10:45:17.419Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.429Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-31T10:45:17.429Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/nunta360-e2f0e/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-12-31T10:45:17.445Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:17.445Z] > authorizing via signed-in user (brindusanraull@gmail.com)
+[debug] [2025-12-31T10:45:17.445Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:17.445Z] Checked if tokens are valid: true, expires at: 1767181514685
+[debug] [2025-12-31T10:45:17.445Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo [none]
+[debug] [2025-12-31T10:45:18.193Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo 200
+[debug] [2025-12-31T10:45:18.193Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/nunta360-e2f0e/billingInfo {"name":"projects/nunta360-e2f0e/billingInfo","projectId":"nunta360-e2f0e","billingAccountName":"","billingEnabled":false}
+[debug] [2025-12-31T10:45:18.203Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-31T10:45:18.203Z] > authorizing via signed-in user (brindusanraull@gmail.com)

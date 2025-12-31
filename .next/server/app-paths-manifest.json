@@ -1,6 +1,6 @@
 {
+  "/api/media/[slug]/route": "app/api/media/[slug]/route.js",
   "/page": "app/page.js",
-  "/login/page": "app/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/qr/page": "app/dashboard/qr/page.js"
+  "/dashboard/media/page": "app/dashboard/media/page.js"
 }
